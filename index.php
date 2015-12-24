@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+  session_start();
   require 'php/DBConnection.php';
 ?>
 <html lang="en">
@@ -7,8 +8,13 @@
 	<title>Home</title>
   <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/mainLayout.css">
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="css/mainLayout.css">
 </head>
 <body>
 	<div class="container-fluid">
@@ -87,13 +93,16 @@
                   <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password" required>                                        
               </div>
               <br>
-              <button type="submit" name="login" class="btn btn-primary">Login</button>
+              <span id="error"></span>
+              <br>
+              <button name="loginbtn" type="button" onclick="login()" class="btn btn-primary">Login</button>
             </form>
           </div>
           <div class="modal-footer">
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+      
           </div>
         </div>
+        
         <!-- Modal content-->
       </div>
     </div>
@@ -119,17 +128,17 @@
               </div>
               <br>
               <div class="form-group">
-                <label for="name">Your Name&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></label>
+                <label for="name">Your Name&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
                 <input id="name" type="text" class="form-control" name="inputName" value="" placeholder="Full Name" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="inputPassword">Pasword&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></label>
+                <label for="inputPassword">Pasword&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
                 <input id="inputPassword" type="password" class="form-control" name="inputPassword" value="" placeholder="Set a Password" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="retypePassword">Re type Password&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></label>
+                <label for="retypePassword">Re type Password&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
                 <input id="retyprPassword" type="password" class="form-control required" name="retypePassword" value="" placeholder="Retype Password" required>
               </div>
               <br>
@@ -144,17 +153,20 @@
             </form>
           </div>
           <div class="modal-footer">
+          
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
           </div>
         </div>
+
         <!-- Modal content-->
       </div>
     </div>
     <!-- Sign Up Modal -->
+
 	</div>
 	<!--container-->
+  <script type="text/javascript" src="js/ajax.js"></script>
+  <script type="text/javascript" src="js/authentication.js"></script>
 
-  <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,9 +1,10 @@
 
 var xmlHttp = creteXMLHttpRequestObject();
+var xmlHttpResponse = "";
+var textHttpResponse = "";
 
 function creteXMLHttpRequestObject(){
 	var xmlHttp;
-
 	if(window.ActiveXObject)
 	{
 		try
@@ -30,3 +31,36 @@ function creteXMLHttpRequestObject(){
 	else
 		return xmlHttp;
 }
+
+
+
+
+function requestToServer(url,data)
+{
+	
+	if(xmlHttp)
+	{
+		try
+		{
+			xmlHttp.open("POST",url,true);
+			xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlHttp.onreadystatechange = function() 
+			{
+  				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+  				{
+    				//request code go here code 
+    				textHttpResponse = xmlHttp.responseText;
+    				xmlHttpResponse = xmlHttp.responseXML;
+   			 	}
+  			};
+
+			xmlHttp.send(data);
+
+		}catch(e)
+		{
+			alert(e.toString());
+		}
+	}
+}
+
+

@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-  	<div class="content">
+  	<div class="contentArea">
   		<div class="header">
   			<nav class="navbar navbar-default">
           <div class="container-fluid">
@@ -63,7 +63,7 @@
         <br>
       </footer>
   	 </div>
-  	<!--content-->
+  	<!--contentArea-->
 
 
 
@@ -152,7 +152,7 @@
     </div>
     <!-- Sign Up Modal -->
 	</div>
-	<!--container-->
+	<!--containerfluid-->
 
   <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
