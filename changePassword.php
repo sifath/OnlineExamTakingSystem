@@ -1,53 +1,40 @@
 <!DOCTYPE html>
+
 <?php
   session_start();
   require 'php/DBConnection.php';
   
-  $email=$name=$institution="";
+  $name=$institution=$email="";
   
-  if(isset($_SESSION["currentUser"]))
+  $email= $_SESSION["currentUser"];
+  $name=$_SESSION["name"];
+  $institution=$_SESSION["institution"];
+  $password=$_SESSION["password"];
+  
+  if(($_SERVER["REQUEST_METHOD"]=="POST") && (isset($_POST["update"])))
   {
-	$email= $_SESSION["currentUser"];
-	$userInfo = selectUserInfo($email);
-									
-	$_SESSION["name"]=$userInfo["name"];
-	$_SESSION["institution"]=$userInfo["institution"];
-	$_SESSION["password"]=$userInfo["password"];
-  }
-	
-	if(isset($_SESSION["name"]))
-	{
-		$name=$_SESSION["name"];
-	}
-	
-	if(isset($_SESSION["institution"]))
-	{
-		$institution=$_SESSION["institution"];
-	}
-	
-	if(isset($_SESSION["password"]))
-	{
-		$password=$_SESSION["password"];
-	}
-	
-  if(($_SERVER["REQUEST_METHOD"]=="POST") && isset($_POST["changePassword"]))
-  {
-		$_SESSION["name"]=$_POST["name"];
-		$_SESSION["institution"]= $_POST["institution"];
-		header("location:changePassword.php");
+	  if($password==$_POST["oldPassword"])
+	  {
+		  if($_POST["newPassword"]==$_POST["confirmPassword"])
+		  {
+			  updateUser($email, $name, $institution, $password);
+		  }
+		  else
+		  {
+			  echo "password does not match";
+		  }
+	  }
+	  else
+	  {
+		  echo "re enter old password";
+	  }
   }
   
-  if(($_SERVER["REQUEST_METHOD"]=="POST") && isset($_POST["update"]))
-  {
-		$name=$_POST["name"];
-		$institution= $_POST["institution"];
-		updateUser($email, $name, $institution, $password);
-  }
-  
- ?>
+?>
+
 <html lang="en">
 <head>
-	<title>User Information</title>
+	<title>Change Password</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -112,38 +99,43 @@
       <br>
 	  
 <div class="container">
-  <h2>Edit Profile</h2>
+  <h2>Change Password</h2>
   <br><br>
   
   <form class="form-horizontal" role="form" method="post">
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="name">Name:</label>
+      <label class="control-label col-sm-2" for="oldPassword">Old Password:</label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="name" name= "name" value= "<?php echo $name; ?>">
+        <input type="password" class="form-control" id="oldPassword" name= "oldPassword">
       </div>
 	  <div class="col-sm-6"></div>
     
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="institution">Institution:</label>
+      <label class="control-label col-sm-2" for="NewPassword">New Password:</label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="institution" name= "institution" value= "<?php echo $institution; ?>">
+        <input type="password" class="form-control" id="newPassword" name= "newPassword">
       </div>
-	   <div class="col-sm-6"></div>
-        
+	  <div class="col-sm-6"></div>
+    
     </div>
 	<div class="form-group">
+      <label class="control-label col-sm-2" for="confirmPassword">Confirm Password:</label>
+      <div class="col-sm-4">
+        <input type="password" class="form-control" id="confirmPassword" name= "confirmPassword">
+      </div>
+	  <div class="col-sm-6"></div>
+    
+    </div>
+	
+	<div class="form-group">
 		<div class="col-sm-2"></div>
-		<div class="col-sm-4">
-		
-		<input type="submit" name="changePassword" value="Change Password"/>
-		
-		</div>
 		<div class="col-sm-2">
 		
-		<input type="submit" name="update" value="update"/>
+		<input type="submit" name="update" value="Update"/>
+		
 		</div>
-		<div class="col-sm-4"></div>
+		<div class="col-sm-8"></div>
 		
 	</div>
 	
