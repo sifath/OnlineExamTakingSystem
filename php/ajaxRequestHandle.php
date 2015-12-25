@@ -14,6 +14,7 @@
 			if($password == $_POST["password"])
 			{
 				$_SESSION["currentUser"] = $_POST["email"];
+				echo "successful";
 				//header("Location: ../editProfile.php");
 				//exit();
 			}
@@ -23,7 +24,6 @@
 			echo "Wrong User Name or Password";
 		}
 	}
-
 
 
 
@@ -39,9 +39,9 @@
 		$photo = "";
 		
 		if(validateUser($inputEmail)===TRUE)
-			{
-				echo "This user already exits !"
-			}
+		{
+			echo "This user already exits !";
+		}
 			
 		else
 			{

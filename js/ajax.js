@@ -51,6 +51,8 @@ function requestToServer(url,data)
     				//request code go here code 
     				textHttpResponse = xmlHttp.responseText;
     				xmlHttpResponse = xmlHttp.responseXML;
+    			
+    				
    			 	}
   			};
 
@@ -60,6 +62,16 @@ function requestToServer(url,data)
 		{
 			alert(e.toString());
 		}
+	}
+
+	if(textHttpResponse!=null)
+	{
+		alert(textHttpResponse);
+		return textHttpResponse;
+	}
+	else
+	{
+		return xmlHttpResponse;
 	}
 }
 

@@ -126,7 +126,7 @@
 	  
       <footer>
         <br>
-        <p>Copyright &copy; All right reserved by Md. Asiful Islam and Faria Nawshine.</p>
+        <p>Copyright &copy; All right reserved by Md. Asiful Islam and Faria Nawshin.</p>
         <br>
       </footer>
   	 </div>
