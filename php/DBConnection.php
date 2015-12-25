@@ -85,5 +85,71 @@
 			return null;
 		}
 	}
+	
+
+function validateUser($inputEmail)
+{
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+	$sql = "SELECT * FROM oets.userinfo where email='".$inputEmail."'";
+	$result = $conn->query($sql);
+
+	
+	if($result->num_rows>0)
+	{
+		$conn->close();
+		return true;
+	}
+
+}
+
+//------End validateUser() -----------
+
+function getName($email)
+{
+	$sql="SELECT name FROM oets.userinfo WHERE email='".$email."'";
+	$result=$GLOBALS['conn']->query($sql);
+	
+	if($result->num_rows>0)
+	{
+		while($row=$result->fetch_assoc())
+		{
+			$name=$row["name"];
+			return $name;
+		}
+		
+	}
+}
+
+function getInstitution($email)
+{
+	$sql="SELECT institution FROM oets.userinfo WHERE email='".$email."'";
+	$result=$GLOBALS['conn']->query($sql);
+	
+	if($result->num_rows>0)
+	{
+		while($row=$result->fetch_assoc())
+		{
+			$institution=$row["institution"];
+			return $institution;
+		}
+		
+	}
+}
+
+function getPassword($email)
+{
+	$sql="SELECT password FROM oets.userinfo WHERE email='".$email."'";
+	$result=$GLOBALS['conn']->query($sql);
+	
+	if($result->num_rows>0)
+	{
+		while($row=$result->fetch_assoc())
+		{
+			$password=$row["password"];
+			return $password;
+		}
+		
+	}
+}
 
 ?>

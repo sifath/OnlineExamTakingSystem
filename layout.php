@@ -55,7 +55,13 @@
         </nav>
   		</div>
   		<!--header-->
-      <div class="headColor"></div>
+      <div class="headColor">
+	  </div>
+	  
+	  <!---code section -->
+	  
+	  
+	  
       <br><br><br>
       <footer>
         <br>

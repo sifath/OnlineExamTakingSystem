@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <?php
+  session_start();
   require 'php/DBConnection.php';
 ?>
 <html lang="en">
 <head>
-	<title>Home</title>
-  <meta charset="utf-8">
+	<title>User Information</title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/mainLayout.css">
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="css/mainLayout.css">
 </head>
 <body>
 	<div class="container-fluid">
-  	<div class="contentArea">
+  	<div class="content">
   		<div class="header">
   			<nav class="navbar navbar-default">
           <div class="container-fluid">
@@ -35,10 +41,29 @@
               </ul>
               <ul class="nav navbar-nav navbar-right">
               <?php
+			  $name=$institution=$password="";
                 if(isset($_SESSION["currentUser"]))
                 {
+					$email= $_SESSION["currentUser"];
+					$_SESSION["name"]=getName($email);
+					$_SESSION["institution"]=getInstitution($email);
+					$_SESSION["password"]=getPassword($email);
+					
+					if(isset($_SESSION["name"]))
+						{
+							$name=$_SESSION["name"];
+						}
+					if(isset($_SESSION["Institution"]))
+						{
+							$institution=$_SESSION["institution"];
+						}
+					if(isset($_SESSION["password"]))
+						{
+							$password=$_SESSION["password"];
+						}
               ?>
                 <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			
                 <?php
                   }
                   else
@@ -56,16 +81,57 @@
   		</div>
   		<!--header-->
       <div class="headColor"></div>
-      <br><br><br>
+      <br>
+	  
+<div class="container">
+  <h2>Edit Profile</h2>
+  <br><br>
+  
+  <form class="form-horizontal" role="form">
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="name">Name:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="name" value= "<?php echo $name; ?>">
+      </div>
+	  <div class="col-sm-6"></div>
+    
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="institution">Institution:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="institution" value= "<?php echo $institution; ?>">
+      </div>
+	   <div class="col-sm-6"></div>
+        
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="password">Password:</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="password" value= "<?php echo $password; ?>">
+      </div>
+		<div class="col-sm-6"></div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-2">
+			<button type="button" class="btn btn-default">Update</button>
+		</div>
+		<div class="col-sm-5"></div>
+	</div>
+  </form>
+</div>
+
+	  
+	  <br><br>
+	  
       <footer>
         <br>
         <p>Copyright &copy; All right reserved by Md. Asiful Islam and Faria Nawshine.</p>
         <br>
       </footer>
   	 </div>
-  	<!--contentArea-->
-
-
+  	<!--content-->
+	
 
     <div id="loginPan" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -87,13 +153,16 @@
                   <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password" required>                                        
               </div>
               <br>
-              <button type="submit" name="login" class="btn btn-primary">Login</button>
+              <span id="error"></span>
+              <br>
+              <button name="loginbtn" type="button" onclick="login()" class="btn btn-primary">Login</button>
             </form>
           </div>
           <div class="modal-footer">
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+      
           </div>
         </div>
+        
         <!-- Modal content-->
       </div>
     </div>
@@ -119,42 +188,45 @@
               </div>
               <br>
               <div class="form-group">
-                <label for="name">Your Name&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></label>
+                <label for="name">Your Name&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
                 <input id="name" type="text" class="form-control" name="inputName" value="" placeholder="Full Name" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="inputPassword">Pasword&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></label>
+                <label for="inputPassword">Pasword&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
                 <input id="inputPassword" type="password" class="form-control" name="inputPassword" value="" placeholder="Set a Password" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="retypePassword">Re type Password&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></label>
-                <input id="retyprPassword" type="password" class="form-control required" name="retypePassword" value="" placeholder="Retype Password" required>
+                <label for="retypePassword">Re type Password&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
+                <input id="retypePassword" type="password" class="form-control required" name="retypePassword" value="" placeholder="Retype Password" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="institution">Institution</label>
-                <input id="institution" type="text" class="form-control required" name="institution" value="" placeholder="You Institution Name">
+                <label for="institutionName">Institution</label>
+                <input id="institutionName" type="text" class="form-control required" name="institutionName" value="" placeholder="You Institution Name">
               </div>
               <br>
               <p>
-              <button type="submit" name="signup" class="btn btn-primary">Sign Up</button>
+              <button type="button" name="signup" onclick="sign()" class="btn btn-primary">Sign Up</button>
               </p>
             </form>
           </div>
           <div class="modal-footer">
+          
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
           </div>
         </div>
+
         <!-- Modal content-->
       </div>
     </div>
     <!-- Sign Up Modal -->
-	</div>
-	<!--containerfluid-->
 
-  <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
+	</div>
+	<!--container-->
+  <script type="text/javascript" src="js/ajax.js"></script>
+  <script type="text/javascript" src="js/authentication.js"></script>
+
 </body>
 </html>

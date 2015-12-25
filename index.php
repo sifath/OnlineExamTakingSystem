@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 	<title>Home</title>
-  <meta charset="utf-8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   
   <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
@@ -65,7 +65,7 @@
       <br><br><br>
       <footer>
         <br>
-        <p>Copyright &copy; All right reserved by Md. Asiful Islam and Faria Nawshine.</p>
+        <p>Copyright &copy; All right reserved by Md. Asiful Islam and Faria Nawshin.</p>
         <br>
       </footer>
   	 </div>
@@ -139,16 +139,16 @@
               <br>
               <div class="form-group">
                 <label for="retypePassword">Re type Password&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
-                <input id="retyprPassword" type="password" class="form-control required" name="retypePassword" value="" placeholder="Retype Password" required>
+                <input id="retypePassword" type="password" class="form-control required" name="retypePassword" value="" placeholder="Retype Password" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="institution">Institution</label>
-                <input id="institution" type="text" class="form-control required" name="institution" value="" placeholder="You Institution Name">
+                <label for="institutionName">Institution</label>
+                <input id="institutionName" type="text" class="form-control required" name="institutionName" value="" placeholder="You Institution Name">
               </div>
               <br>
               <p>
-              <button type="submit" name="signup" class="btn btn-primary">Sign Up</button>
+              <button type="button" name="signup" onclick="signup()" class="btn btn-primary">Sign Up</button>
               </p>
             </form>
           </div>
