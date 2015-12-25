@@ -75,7 +75,7 @@
 
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="active"><a href="."><span class="glyphicon glyphicon-home"></span> Home</a></li>
 
                 <li><a href="#">About</a></li>
                 <li><a href="#">FAQ</a></li>

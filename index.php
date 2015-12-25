@@ -33,7 +33,7 @@
 
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="active"><a href="."><span class="glyphicon glyphicon-home"></span> Home</a></li>
 
                 <li><a href="#">About</a></li>
                 <li><a href="#">FAQ</a></li>
@@ -62,6 +62,7 @@
   		</div>
   		<!--header-->
       <div class="headColor"></div>
+
       <br><br><br>
       <footer>
         <br>
@@ -93,7 +94,7 @@
                   <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password" required>                                        
               </div>
               <br>
-              <span id="error"></span>
+              <div id="error"></div>
               <br>
               <button name="loginbtn" type="button" onclick="login()" class="btn btn-primary">Login</button>
             </form>
@@ -120,25 +121,25 @@
           <div class="modal-body">
             
             <form id="signup" align="center" role="form">
-            <label style="color:red"><span class="glyphicon glyphicon-star"></span>&nbsp;<i>mean required</i></label>
+            <label style="color:red"><b>*</b>&nbsp;<i>mean required</i></label>
             <br><br><br>
               <div class="form-group">
-                <label for="inputEmail">Email&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
+                <label for="inputEmail">Email&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
                 <input id="inputEmail" type="email" class="form-control" name="inputEmail" value="" placeholder="Email Address" required>                      
               </div>
               <br>
               <div class="form-group">
-                <label for="name">Your Name&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
+                <label for="name">Your Name&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
                 <input id="name" type="text" class="form-control" name="inputName" value="" placeholder="Full Name" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="inputPassword">Pasword&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
+                <label for="inputPassword">Pasword&nbsp;&nbsp;&nbsp;<span  style="color:red"><b>*</b></span></label>
                 <input id="inputPassword" type="password" class="form-control" name="inputPassword" value="" placeholder="Set a Password" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="retypePassword">Re type Password&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
+                <label for="retypePassword">Re type Password&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
                 <input id="retypePassword" type="password" class="form-control required" name="retypePassword" value="" placeholder="Retype Password" required>
               </div>
               <br>
@@ -146,9 +147,11 @@
                 <label for="institutionName">Institution</label>
                 <input id="institutionName" type="text" class="form-control required" name="institutionName" value="" placeholder="You Institution Name">
               </div>
-              <br>
+              <br><br>
+              <div id="signUpError"></div>
+              <br><br>
               <p>
-              <button type="button" name="signup" onclick="signup()" class="btn btn-primary">Sign Up</button>
+              <button type="button" name="signupBtn" onclick="signup()" class="btn btn-primary">Sign Up</button>
               </p>
             </form>
           </div>
@@ -166,7 +169,6 @@
 	</div>
 	<!--container-->
   <script type="text/javascript" src="js/ajax.js"></script>
-  <script type="text/javascript" src="js/authentication.js"></script>
 
 </body>
 </html>

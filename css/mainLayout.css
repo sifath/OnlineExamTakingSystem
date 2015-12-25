@@ -33,8 +33,10 @@ nav{
     height:50px;
     margin:auto;
 }
-#loginPan #error{
+#signUpError,#error{
     color:red;
+    width: 100%;
+    margin:auto;
 }
 #signup{
     text-align: left;

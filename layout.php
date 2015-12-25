@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <?php
+  session_start();
   require 'php/DBConnection.php';
 ?>
 <html lang="en">
 <head>
-	<title>Home</title>
+  <title>Home</title>
   <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/mainLayout.css">
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="css/mainLayout.css">
 </head>
 <body>
-	<div class="container-fluid">
-  	<div class="contentArea">
-  		<div class="header">
-  			<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="content">
+      <div class="header">
+        <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -27,7 +33,7 @@
 
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="active"><a href="."><span class="glyphicon glyphicon-home"></span> Home</a></li>
 
                 <li><a href="#">About</a></li>
                 <li><a href="#">FAQ</a></li>
@@ -38,7 +44,7 @@
                 if(isset($_SESSION["currentUser"]))
                 {
               ?>
-                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 <?php
                   }
                   else
@@ -53,23 +59,18 @@
             </div>
           </div>
         </nav>
-  		</div>
-  		<!--header-->
-      <div class="headColor">
-	  </div>
-	  
-	  <!---code section -->
-	  
-	  
-	  
+      </div>
+      <!--header-->
+      <div class="headColor"></div>
+
       <br><br><br>
       <footer>
         <br>
         <p>Copyright &copy; All right reserved by Md. Asiful Islam and Faria Nawshin.</p>
         <br>
       </footer>
-  	 </div>
-  	<!--contentArea-->
+     </div>
+    <!--content-->
 
 
 
@@ -93,13 +94,16 @@
                   <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password" required>                                        
               </div>
               <br>
-              <button type="submit" name="login" class="btn btn-primary">Login</button>
+              <div id="error"></div>
+              <br>
+              <button name="loginbtn" type="button" onclick="login()" class="btn btn-primary">Login</button>
             </form>
           </div>
           <div class="modal-footer">
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+      
           </div>
         </div>
+        
         <!-- Modal content-->
       </div>
     </div>
@@ -117,50 +121,54 @@
           <div class="modal-body">
             
             <form id="signup" align="center" role="form">
-            <label style="color:red"><span class="glyphicon glyphicon-star"></span>&nbsp;<i>mean required</i></label>
+            <label style="color:red"><b>*</b>&nbsp;<i>mean required</i></label>
             <br><br><br>
               <div class="form-group">
-                <label for="inputEmail">Email&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></span></label>
+                <label for="inputEmail">Email&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
                 <input id="inputEmail" type="email" class="form-control" name="inputEmail" value="" placeholder="Email Address" required>                      
               </div>
               <br>
               <div class="form-group">
-                <label for="name">Your Name&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></label>
+                <label for="name">Your Name&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
                 <input id="name" type="text" class="form-control" name="inputName" value="" placeholder="Full Name" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="inputPassword">Pasword&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></label>
+                <label for="inputPassword">Pasword&nbsp;&nbsp;&nbsp;<span  style="color:red"><b>*</b></span></label>
                 <input id="inputPassword" type="password" class="form-control" name="inputPassword" value="" placeholder="Set a Password" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="retypePassword">Re type Password&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-star" style="color:red"></label>
-                <input id="retyprPassword" type="password" class="form-control required" name="retypePassword" value="" placeholder="Retype Password" required>
+                <label for="retypePassword">Re type Password&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
+                <input id="retypePassword" type="password" class="form-control required" name="retypePassword" value="" placeholder="Retype Password" required>
               </div>
               <br>
               <div class="form-group">
-                <label for="institution">Institution</label>
-                <input id="institution" type="text" class="form-control required" name="institution" value="" placeholder="You Institution Name">
+                <label for="institutionName">Institution</label>
+                <input id="institutionName" type="text" class="form-control required" name="institutionName" value="" placeholder="You Institution Name">
               </div>
-              <br>
+              <br><br>
+              <div id="signUpError"></div>
+              <br><br>
               <p>
-              <button type="submit" name="signup" class="btn btn-primary">Sign Up</button>
+              <button type="button" name="signupBtn" onclick="signup()" class="btn btn-primary">Sign Up</button>
               </p>
             </form>
           </div>
           <div class="modal-footer">
+          
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
           </div>
         </div>
+
         <!-- Modal content-->
       </div>
     </div>
     <!-- Sign Up Modal -->
-	</div>
-	<!--containerfluid-->
 
-  <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
+  </div>
+  <!--container-->
+  <script type="text/javascript" src="js/ajax.js"></script>
+
 </body>
 </html>

@@ -44,7 +44,7 @@
 					"email" => $row["email"],
 					"password" => $row["password"],
 					"name" => $row["name"],
-					"instituion" => $row["institution"],
+					"institution" => $row["institution"],
 					"photo" => $row["photo"]
 					);
 			}

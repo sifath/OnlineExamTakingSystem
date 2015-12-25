@@ -9,21 +9,24 @@
 		//echo "I am in login";
 		$password = selectPassword($_POST["email"]);
 
-		if($password != null)
+		if($password)
 		{
 			if($password == $_POST["password"])
 			{
 				$_SESSION["currentUser"] = $_POST["email"];
 				echo "successful";
-				//header("Location: ../editProfile.php");
-				//exit();
+			}
+			else
+			{
+				echo "Wrong Password";
 			}
 		}
 		else
 		{
-			echo "Wrong User Name or Password";
+			echo "Wrong User Name";
 		}
 	}
+
 
 
 
@@ -38,23 +41,16 @@
 		$institutionName = $_POST["institutionName"]; 
 		$photo = "";
 		
-		if(validateUser($inputEmail)===TRUE)
+		if(selectUserInfo($inputEmail) != null)
 		{
-			echo "This user already exits !";
+			echo "This email already used for another account !";
 		}
 			
 		else
 			{
-				if($inputPassword == $retypePassword)
-				{
-					$_SESSION["currentUser"] = $_POST["inputEmail"];
-					insertUserInfo($inputEmail,$inputPassword,$name,$institutionName,$photo);
-					
-				}
-				else
-				{
-					echo "Password does not match. Retype password.";
-				}
+				insertUserInfo($inputEmail,$inputPassword,$name,$institutionName,$photo);
+				$_SESSION["currentUser"] = $_POST["inputEmail"];
+				echo "successful";
 			}
 	}
 		
