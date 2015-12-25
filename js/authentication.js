@@ -9,6 +9,9 @@ function login()
 
 }
 
+
+
+
 function signup()
 {	
 	var inputEmail = document.getElementById('inputEmail').value;

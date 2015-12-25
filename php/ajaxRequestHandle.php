@@ -23,6 +23,10 @@
 			echo "Wrong User Name or Password";
 		}
 	}
+
+
+
+
 	
 	if(isset($_POST["signup"]))
 	{
@@ -56,3 +60,4 @@
 		
 	
 ?>
+
