@@ -104,51 +104,13 @@ function validateUser($inputEmail)
 
 //------End validateUser() -----------
 
-function getName($email)
+function updateUser($email, $name, $institution, $password)
 {
-	$sql="SELECT name FROM oets.userinfo WHERE email='".$email."'";
+	$sql = "UPDATE oets.userInfo SET name='$name', institution='$institution', password='$password' WHERE email= '$email'";
 	$result=$GLOBALS['conn']->query($sql);
-	
-	if($result->num_rows>0)
+	if($result===TRUE)
 	{
-		while($row=$result->fetch_assoc())
-		{
-			$name=$row["name"];
-			return $name;
-		}
-		
-	}
-}
-
-function getInstitution($email)
-{
-	$sql="SELECT institution FROM oets.userinfo WHERE email='".$email."'";
-	$result=$GLOBALS['conn']->query($sql);
-	
-	if($result->num_rows>0)
-	{
-		while($row=$result->fetch_assoc())
-		{
-			$institution=$row["institution"];
-			return $institution;
-		}
-		
-	}
-}
-
-function getPassword($email)
-{
-	$sql="SELECT password FROM oets.userinfo WHERE email='".$email."'";
-	$result=$GLOBALS['conn']->query($sql);
-	
-	if($result->num_rows>0)
-	{
-		while($row=$result->fetch_assoc())
-		{
-			$password=$row["password"];
-			return $password;
-		}
-		
+		return true;
 	}
 }
 
