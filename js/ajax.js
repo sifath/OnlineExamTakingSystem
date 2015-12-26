@@ -131,7 +131,8 @@ function signup()
 	var inputPassword = document.getElementById('inputPassword').value;
 	var retypePassword = document.getElementById('retypePassword').value;
 	var institutionName = document.getElementById('institutionName').value;
-
+	
+	
 	if(inputPassword != retypePassword)
 	{
 		document.getElementById('signUpError').innerHTML = "Password and Retype password don't match";
@@ -139,9 +140,30 @@ function signup()
 	}
 
 
-	if(inputEmail == "")
+	if(!inputEmail)
+	{
+		document.getElementById('inputEmail').style.borderColor  = "red";
+		document.getElementById('signUpError').innerHTML = "Red colored Field is Required !";
+		return null;
+	}
+	
+	if(!name)
+	{
+		document.getElementById('name').style.borderColor  = "red";
+		document.getElementById('signUpError').innerHTML = "Red colored Field is Required !";
+		return null;
+	}
+	
+	if(!inputPassword)
 	{
 		document.getElementById('inputPassword').style.borderColor  = "red";
+		document.getElementById('signUpError').innerHTML = "Red colored Field is Required !";
+		return null;
+	}
+	
+	if(!retypePassword)
+	{
+		document.getElementById('retypePassword').style.borderColor  = "red";
 		document.getElementById('signUpError').innerHTML = "Red colored Field is Required !";
 		return null;
 	}

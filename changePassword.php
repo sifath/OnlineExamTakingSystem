@@ -48,9 +48,14 @@
 <body>
 	<div class="container-fluid">
   	<div class="contentArea">
-  		<?php include 'layout/header.php';?>
+		<?php include 'layout/header.php';?>
+ <br>
+<div class="bodyContent">	  
+
+  	<div class="contentArea">
+  		
             <br>
-	  
+
 <div class="container">
   <h2>Change Password</h2>
   <br><br>
@@ -81,20 +86,18 @@
     
     </div>
 	
-	<div class="form-group">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-2">
-		
-		<input type="submit" name="update" value="Update"/>
-		
+		<div class="form-group">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-4">
+		<input type="button" class="btn btn-default" value="Update" name="update" style="width:150px;"/>
 		</div>
-		<div class="col-sm-8"></div>
-		
+		<div class="col-sm-5"></div>
 	</div>
 	
   </form>
 </div>
-
+</div>
+</div>
 	  
 	  <br><br>
 	  
@@ -102,12 +105,9 @@
   	 </div>
   	<!--content-->
 	
-
-  
 	</div>
 	<!--container-->
   <script type="text/javascript" src="js/ajax.js"></script>
-  <script type="text/javascript" src="js/authentication.js"></script>
-
+  
 </body>
 </html>
