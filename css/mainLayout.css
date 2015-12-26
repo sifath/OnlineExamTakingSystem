@@ -72,3 +72,9 @@ footer div{
 	width: 100%;
 }
 
+.image
+{
+	height:150px;
+	width:150px;
+	background-color: gray;
+}

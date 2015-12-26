@@ -76,7 +76,24 @@
       <div class="col-sm-4">
         <input type="text" class="form-control" id="name" name= "name" value= "<?php echo $name; ?>">
       </div>
-	  <div class="col-sm-6"></div>
+	  <div class="col-sm-2"></div>
+	  <div class="col-sm-4">
+		<div class="image">
+		<?php
+		$image="";
+		
+		$image=selectUserInfo($_SESSION["currentUser"])["photo"];
+		if(empty($image))
+		{
+			
+			echo "No Profile Picture";
+		}
+		
+		?>
+		</div>
+		<br>
+		<input type="file" name="photo" id="photo">
+	  </div>
     
     </div>
     <div class="form-group">
@@ -84,7 +101,9 @@
       <div class="col-sm-4">
         <input type="text" class="form-control" id="institution" name= "institution" value= "<?php echo $institution; ?>">
       </div>
-	   <div class="col-sm-6"></div>
+	  <div class="col-sm-6">
+		
+	   </div>
         
     </div>
 	<div class="form-group">
