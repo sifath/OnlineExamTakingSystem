@@ -87,20 +87,6 @@
 	}
 	
 
-function validateUser($inputEmail)
-{
-	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-	$sql = "SELECT * FROM oets.userinfo where email='".$inputEmail."'";
-	$result = $conn->query($sql);
-
-	
-	if($result->num_rows>0)
-	{
-		$conn->close();
-		return true;
-	}
-
-}
 
 //------End validateUser() -----------
 

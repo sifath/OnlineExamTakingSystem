@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-  	<div class="content">
+  	<div class="contentArea">
   		<div class="header">
   			<nav class="navbar navbar-default">
           <div class="container-fluid">
@@ -81,6 +81,7 @@
 		$name= $userInfo["name"];
 		$institution= $userInfo["institution"];
 	?>
+  <!--
 <form method="post">
 	<div class="container">
 	<h3>Profile Information</h3>
@@ -114,7 +115,7 @@
 	}
 	
 	?>
-</form>	  
+</form>	-->  
       <br><br><br>
       <footer>
         <br>
@@ -122,7 +123,7 @@
         <br>
       </footer>
   	 </div>
-  	<!--content-->
+  	<!--contentArea-->
 
 
 

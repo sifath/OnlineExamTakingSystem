@@ -32,8 +32,54 @@ function creteXMLHttpRequestObject(){
 		return xmlHttp;
 }
 
+//-------------AJax FunctionDemo---------------------------
+//********************************************************
 
 
+/*
+
+
+function AJAXDEMO()
+{
+	
+	var data = "";
+	var url = "";
+
+	//write your logic here
+
+
+	if(xmlHttp)
+	{
+		try
+		{
+			xmlHttp.open("POST",url,true);
+			xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlHttp.onreadystatechange = function() 
+			{
+  				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+  				{
+    				
+    				var response = xmlHttp.responseText;
+    				//or var response = xmlHttp.responseXML;
+
+    				//write your logic here which will work after getting response from server 
+    				
+   			 	}
+  			};
+
+			xmlHttp.send(data);
+
+		}catch(e)
+		{
+			alert(e.toString());
+		}
+	}
+
+}
+
+
+
+*/
 
 function login()
 {
@@ -52,15 +98,15 @@ function login()
 			{
   				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
   				{
-    				//request code go here code 
+    				
     				var response = xmlHttp.responseText;
     				
     				if(response.trim() == "successful")
-					{	//alert(xmlHttp.responseText);
+					{	
 						window.location.replace(".");
 					}
 					else
-					{//alert(xmlHttp.responseText);
+					{
 						document.getElementById('error').innerHTML = response.trim();
 					}
    			 	}
@@ -91,6 +137,14 @@ function signup()
 		document.getElementById('signUpError').innerHTML = "Password and Retype password don't match";
 		return null;
 	}
+
+
+	if(inputEmail == "")
+	{
+		document.getElementById('inputPassword').style.borderColor  = "red";
+		document.getElementById('signUpError').innerHTML = "Red colored Field is Required !";
+		return null;
+	}
 	
 	var url = "php/ajaxRequestHandle.php";
 	var data = 'signup=true'+'&inputEmail='+inputEmail+'&name='+name+'&inputPassword='+inputPassword+'&retypePassword='+retypePassword+'&institutionName='+institutionName;
@@ -100,7 +154,7 @@ function signup()
 	if(xmlHttp)
 	{
 		try
-		{alert("response");
+		{
 			xmlHttp.open("POST",url,true);
 			xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlHttp.onreadystatechange = function() 
@@ -108,7 +162,7 @@ function signup()
   				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
   				{
     				var response = xmlHttp.responseText;
-    				alert(response);
+    				
     				if(response.trim() == "successful")
 					{	
 						window.location.replace(".");
