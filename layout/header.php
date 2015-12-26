@@ -44,7 +44,7 @@
   		<!--header-->
 
 
-      <div class="headColor"></div>
+      
 
 
       
@@ -56,19 +56,20 @@
       <nav class="userNav">
         <h3>My Dashbord</h3>
         <div>
-          <ul class="row">
-            <li><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Exam Dashboard</a></li>
-            <li><a href="exam/createExam.php"><span class="glyphicon glyphicon-education"></span> Create an Exam</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-certificate"></span> Participate in an Exam</a></li>
+          <ul clas="row">
+            <li><span class="glyphicon glyphicon-dashboard"></span><a href="#"> Exam Dashboard</a></li>
+            <li><span class="glyphicon glyphicon-education"></span><a href="createExam.php"> Create an Exam</a></li>
+            <li><span class="glyphicon glyphicon-certificate"></span><a href="#"> Participate in an Exam</a></li>
           </ul>
         </div>
+        <br>
       </nav>
    <?php 
         }
     ?>
 
 
-
+    <div class="headColor"></div>
 
 
 
@@ -92,7 +93,7 @@
                   <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password" required>                                        
               </div>
               <br>
-              <div id="error"></div>
+              <div id="loginError" class="error"></div>
               <br>
               <button name="loginbtn" type="button" onclick="login()" class="btn btn-primary">Login</button>
             </form>
@@ -146,7 +147,7 @@
                 <input id="institutionName" type="text" class="form-control required" name="institutionName" value="" placeholder="You Institution Name">
               </div>
               <br><br>
-              <div id="signUpError"></div>
+              <div id="signUpError" class="error"></div>
               <br><br>
               <p>
               <button type="button" name="signupBtn" onclick="signup()" class="btn btn-primary">Sign Up</button>

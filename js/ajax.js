@@ -107,7 +107,7 @@ function login()
 					}
 					else
 					{
-						document.getElementById('error').innerHTML = response.trim();
+						document.getElementById('loginError').innerHTML = response.trim();
 					}
    			 	}
   			};
@@ -121,7 +121,7 @@ function login()
 	}
 
 }
-
+//---------------End Login() -------------------
 
 
 function signup()
@@ -204,6 +204,14 @@ function signup()
 		}
 	}
 }
+//---------------------End of signup()----------------------
 
 
 
+
+
+
+function saveTheExam()
+{
+	
+}

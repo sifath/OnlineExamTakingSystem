@@ -11,7 +11,7 @@ body{
     margin-left:auto;
     margin-right:auto;
     margin-top:20px;
-    min-height: 1000px;
+    //min-height: 1000px;
     background-color: #fff;
     box-shadow: 0 5px 17px 0 rgba(0,0,0,.6);
 }
@@ -56,7 +56,7 @@ nav{
     line-height: 24px;
     //color: #646464;
     color:#6b6c69;
-    padding-left: 20px;
+    margin-left: 30px;
 }
 .userNav ul{
     list-style-type: none;
@@ -66,28 +66,36 @@ nav{
     margin-right: 30px;
     padding-top: 5px;
     padding-bottom: 5px;
-    //color:#9b9b9b;   
+    //color:#9b9b9b;  
+    color: #337ab7; 
 }
 
 .userNav ul li a{
-    color: #646464;
+    //color: #337ab7;
     //font-size: 14px;
+    font-size: 15px;
     text-decoration: none;
     //padding: 6px 0;
 }
-.userNav ul li:hover{
-    font-size: 20px;
-    color: #eee;
-    border-bottom: 3px solid #9b9b9b;
+.userNav ul li a:hover{
+    font-size: 17px;
+    //color: #eee;
+    border-bottom: 3px solid #337ab7;
 }
 
 @media only screen and (min-width: 750px) {
    
     .userNav ul li{
-        display: inline;
+        //display: inline;
     }
 }
 
+
+
+
+.error{
+    color:red;
+}
 
 
 footer{
@@ -138,6 +146,34 @@ footer div{
 {
 	width:100%;
 	background-color: #E0E0E0;
-    height:480px;
+    //height:480px;
 	
 }
+
+/* ------------------------ CreateExam.php-------------------------*/
+#createExam{
+    width: 80%;
+    margin: auto;
+}
+
+
+
+#inputTime td, #duration td{
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+
+@media only screen and (max-width: 750px) {
+   
+    #createExam{
+        width: 90%;
+        margin: auto;
+    }
+
+
+    #inputTime td, #duration td{
+        float:left;
+    }
+}
+/* ------------------------ CreateExam.php End-------------------------*/

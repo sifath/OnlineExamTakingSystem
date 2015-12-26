@@ -40,7 +40,7 @@
 			$user = array();
 			while($row = $result->fetch_assoc()) 
 			{
-				$user = array(
+				$user []= array(
 					"email" => $row["email"],
 					"password" => $row["password"],
 					"name" => $row["name"],

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <?php
   session_start();
-  require '../php/DBConnection.php';
+  require 'php/DBConnection.php';
   
- 
+  if(!isset($_SESSION["currentUser"]))
+  {
+    header("Location: .");
+  }
   
 ?>
 <html lang="en">
@@ -25,37 +28,100 @@
        <?php include 'layout/header.php';?>
 
     <div  id="createExam">
+    <br><br>
+    <h2>Create an Exam Here</h2>
+    
       <form>
-        <label style="color:red"><b>*</b>&nbsp;<i>mean required</i></label>
-            <br><br><br>
+            <br>
               <div class="form-group">
-                <label for="examName">Exam Title&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
+                <label for="examName">Exam Title :&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
        
                 <textarea id="examName" name="examName" class="resizeable form-control" placeholder="Write the Exam Heading Here" required></textarea>                      
               </div>
               <br>
               <div class="form-group">
-                <label for="startTime">Exam Start time&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
-                <input id="startTime" type="text" class="form-control" name="startTime" value="" placeholder="Exam Strat Time">
-              </div>
-              <br>
-              <div class="form-group">
-                <label for="duration">Exam Duration (in minute)&nbsp;&nbsp;&nbsp;<span  style="color:red"><b>*</b></span></label>
-                <input id="duration" type="password" class="form-control" name="duration" value="" placeholder="Exam Duration">
-              </div>
-              <br>
-            <input type="button" name="signupBtn" onclick="signup()" class="btn btn-primary" value="Save">
+                <label for="inputTime">Exam Start time :</label>
+                <table id="inputTime">
+                  <tr>
+                    <td>
+                      <div class = "input-group">
+                        <input id="year" type="number" class="form-control col-sm-6" name="year" value="" placeholder="Year">
+                        <span class = "input-group-addon">Year&nbsp;&nbsp;&nbsp;</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class = "input-group">
+                        <input id="month" type="number" class="form-control col-sm-6" name="month" value="" placeholder="Month">
+                        <span class = "input-group-addon">Month</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class = "input-group">
+                        <input id="day" type="number" class="form-control col-sm-6" name="day" value="" placeholder="Day">
+                        <span class = "input-group-addon">Day&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      </div>
+                    </td>
+                  </tr>
 
+                  <tr>
+                    <td>
+                      <div class = "input-group">
+                        <input id="hour" type="number" class="form-control" name="hour" value="" placeholder="hour">
+                        <span class = "input-group-addon">Hour&nbsp;&nbsp;&nbsp;</span>
+                      </div>
+                    </td>
+                    <td>
+                     <div class = "input-group">
+                        <input id="minute" type="number" class="form-control" name="minute" value="" placeholder="minute">
+                        <span class = "input-group-addon">Minute</span>
+                     </div>
+                    </td>
+                    <td>
+                      <select>
+                        <option>AM</option>
+                        <option>PM</option>  
+                      </select>
+                    </td>
+                  </tr>
+                </table>
+                
+              </div>
+              <br>
+              <label for="duration">Exam Duration : </label>
+              <div class="form-group">
+                <table id= "duration">
+                   <tr>
+                     <td>
+                        <div class = "input-group">
+                           <input id="hour" type="number" class="form-control" name="hour" value="" placeholder="hour">
+                           <span class = "input-group-addon">H</span>
+                        </div>
+                     </td>
+                     <td>
+                        <div class = "input-group">
+                           <input id="minute" type="number" class="form-control" name="minute" value="" placeholder="minute">
+                           <span class = "input-group-addon">M</span>
+                        </div>
+                     </td>
+                   </tr>
+                </table>
+   
+              </div>
+              <br>
+            <input type="button" name="saveExam" onclick="saveTheExam()" class="btn btn-primary" value="Save the Exam">
+            <br>
+            <span id="saveExamError" class="error"></span>
       </form>
     </div>
       <br><br><br>
-       
+      <?php include 'layout/footer.php';?>
   	 </div>
   	<!--contentArea-->
-    <?php include 'layout/footer.php';?>
+    
 	</div>
 	<!--fluid container-->
-  <script type="text/javascript" src="vjs/ajax.js"></script>
+  <script type="text/javascript" src="js/ajax.js"></script>
+  <script type="text/javascript" src="js/jqueryHelper.js"></script>
 
 </body>
 </html>

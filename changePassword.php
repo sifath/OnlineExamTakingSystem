@@ -103,7 +103,7 @@
 	  
     <?php include 'layout/footer.php';?>
   	 </div>
-  	<!--content-->
+  	<!--content Area-->
 	
 	</div>
 	<!--container-->

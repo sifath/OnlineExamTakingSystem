@@ -3,16 +3,16 @@
   session_start();
   require 'php/DBConnection.php';
   
-  $email=$name=$institution=$photo="";
+  $userInfo=$email=$name=$institution=$photo="";
   
   if(isset($_SESSION["currentUser"]))
   {
 	$email= $_SESSION["currentUser"];
 	$userInfo = selectUserInfo($email);
 									
-	$_SESSION["name"]=$userInfo["name"];
-	$_SESSION["institution"]=$userInfo["institution"];
-	$_SESSION["password"]=$userInfo["password"];
+	$_SESSION["name"]=$userInfo[0]["name"];
+	$_SESSION["institution"]=$userInfo[0]["institution"];
+	$_SESSION["password"]=$userInfo[0]["password"];
 	
   }
 	
@@ -82,7 +82,7 @@
 		<?php
 		$image="";
 		
-		$image=selectUserInfo($_SESSION["currentUser"])["photo"];
+		$image = $userInfo[0]["photo"];
 		if(empty($image))
 		{
 			
@@ -133,7 +133,7 @@
 	  
       <?php include 'layout/footer.php';?>
   	 </div>
-  	<!--content-->
+  	<!--content Area-->
 	</div>
 	<!--container-->
   <script type="text/javascript" src="js/ajax.js"></script>

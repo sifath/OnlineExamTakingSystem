@@ -4,11 +4,11 @@ $(".resizeable").change(function(){
     {
 
     }
+
 });
 
 
 
 $(".resizeable").scroll(function(){
-    //$("span").text(x += 1);
-    aleart("scrolled");
+    
 });
