@@ -142,7 +142,7 @@ function signup()
 
 	if(!inputEmail)
 	{
-		document.getElementById('inputPassword').style.borderColor  = "red";
+		document.getElementById('inputEmail').style.borderColor  = "red";
 		document.getElementById('signUpError').innerHTML = "Red colored Field is Required !";
 		return null;
 	}
