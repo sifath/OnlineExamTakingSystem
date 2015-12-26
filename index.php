@@ -28,7 +28,25 @@
   	<div class="contentArea">
        <?php include 'layout/header.php';?>
 
+    <div class="instruction" id="instruction1">
+      <div >
+          Publish Your Exam in Online
+      </div>
 
+      <div>
+        
+      </div>
+    </div>
+
+    <div class="instruction" id="instruction2">
+      <div >
+          
+      </div>
+
+      <div>
+        
+      </div>
+    </div>
       <br><br><br>
       
   	 </div>
