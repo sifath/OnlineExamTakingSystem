@@ -1,26 +1,5 @@
-<!DOCTYPE html>
-<?php
-  session_start();
-  require 'php/DBConnection.php';
-?>
-<html lang="en">
-<head>
-  <title>Home</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <script src="bootstrap/js/jquery-1.11.3.min.js"></script>
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <script src="bootstrap/js/bootstrap.min.js"></script>
-
-
-  <link rel="stylesheet" type="text/css" href="css/mainLayout.css">
-</head>
-<body>
-  <div class="container-fluid">
-    <div class="content">
-      <div class="header">
-        <nav class="navbar navbar-default">
+  		<div class="header">
+  			<nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -45,7 +24,9 @@
                 {
               ?>
                 <li><a href="php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				
                 <?php
+				
                   }
                   else
                   {
@@ -59,22 +40,19 @@
             </div>
           </div>
         </nav>
-      </div>
-      <!--header-->
+  		</div>
+  		<!--header-->
+
+
       <div class="headColor"></div>
 
-      <br><br><br>
-      <footer>
-        <br>
-        <p>Copyright &copy; All right reserved by Md. Asiful Islam and Faria Nawshin.</p>
-        <br>
-      </footer>
-     </div>
-    <!--content-->
 
 
 
-    <div id="loginPan" class="modal fade" role="dialog">
+
+
+
+      <div id="loginPan" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -165,10 +143,3 @@
       </div>
     </div>
     <!-- Sign Up Modal -->
-
-  </div>
-  <!--container-->
-  <script type="text/javascript" src="js/ajax.js"></script>
-
-</body>
-</html>
