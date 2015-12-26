@@ -90,9 +90,9 @@
 
 //------End validateUser() -----------
 
-function updateUser($email, $name, $institution, $password)
+function updateUser($email, $name, $institution, $password, $photo)
 {
-	$sql = "UPDATE oets.userInfo SET name='$name', institution='$institution', password='$password' WHERE email= '$email'";
+	$sql = "UPDATE oets.userInfo SET name='$name', institution='$institution', password='$password', photo='$photo' WHERE email= '$email'";
 	$result=$GLOBALS['conn']->query($sql);
 	if($result===TRUE)
 	{

@@ -97,7 +97,7 @@
   		<!--header-->
       <div class="headColor"></div>
       <br>
-	  
+<div class="bodyContent">	  
 <div class="container">
   <h2>Change Password</h2>
   <br><br>
@@ -128,18 +128,16 @@
     
     </div>
 	
-	<div class="form-group">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-2">
-		
-		<input type="submit" name="update" value="Update"/>
-		
+		<div class="form-group">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-4">
+		<input type="button" class="btn btn-default" value="Update" name="update" style="width:150px;"/>
 		</div>
-		<div class="col-sm-8"></div>
-		
+		<div class="col-sm-5"></div>
 	</div>
 	
   </form>
+</div>
 </div>
 
 	  

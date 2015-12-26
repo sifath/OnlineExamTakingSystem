@@ -39,7 +39,7 @@
 		$inputPassword = $_POST["inputPassword"];
 		$retypePassword = $_POST["retypePassword"];
 		$institutionName = $_POST["institutionName"]; 
-		$photo = "";
+		$photo="";
 		
 		if(selectUserInfo($inputEmail) != null)
 		{
