@@ -47,6 +47,26 @@
       <div class="headColor"></div>
 
 
+      
+   
+    <?php 
+        if(isset($_SESSION["currentUser"]))
+        {
+    ?>
+      <nav class="userNav">
+        <h3>My Dashbord</h3>
+        <div>
+          <ul class="row">
+            <li><a href="#">Exam Dashboard</a></li>
+            <li><a href="#">Create an Exam</a></li>
+            <li><a href="#">Participate in an Exam</a></li>
+          </ul>
+        </div>
+      </nav>
+   <?php 
+        }
+    ?>
+
 
 
 

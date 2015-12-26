@@ -11,7 +11,7 @@ body{
     margin-left:auto;
     margin-right:auto;
     margin-top:20px;
-    height: 1000px;
+    min-height: 1000px;
     background-color: #fff;
     box-shadow: 0 5px 17px 0 rgba(0,0,0,.6);
 }
@@ -45,12 +45,56 @@ nav{
 #signup p{
     text-align: center;
 }
+
+.userNav{
+    border-bottom: 1px solid #e5e5e5;
+    width: 100%;
+}
+
+.userNav h3{
+    font-size: 22px;
+    line-height: 24px;
+    //color: #646464;
+    color:#6b6c69;
+    padding-left: 20px;
+}
+.userNav ul{
+    list-style-type: none;
+}
+
+.userNav ul li{
+    margin-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    //color:#9b9b9b;   
+}
+
+.userNav ul li a{
+    color: #646464;
+    //font-size: 14px;
+    text-decoration: none;
+    //padding: 6px 0;
+}
+.userNav ul li:hover{
+    font-size: 20px;
+    color: #eee;
+    border-bottom: 3px solid #9b9b9b;
+}
+
+@media only screen and (min-width: 750px) {
+   
+    .userNav ul li{
+        display: inline;
+    }
+}
+
+
+
 footer{
     width: 100%;
     background-color: #F8F8F8;
     border-top:solid #E7E7E7 1px;
     text-align: center;
-    //padding-left: 40px;
 }
 
 footer div{
@@ -61,7 +105,7 @@ footer div{
 
 @media only screen and (max-width: 992px) {
     /* For mobile phones: */
-    .content{
+    .contentArea{
         width: 100%;
     }
 }

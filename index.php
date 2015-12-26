@@ -26,25 +26,14 @@
 <body>
 	<div class="container-fluid">
   	<div class="contentArea">
+       <?php include 'layout/header.php';?>
 
 
-    <?php include 'layout/header.php';?>
-
-      <nav class="userNav">
-        <h3>User Dashbord</h3>
-        <div>
-          <ul>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-          </ul>
-        </div>
-      </nav>
-  
       <br><br><br>
-      <?php include 'layout/footer.php';?>
+      
   	 </div>
   	<!--contentArea-->
+    <?php include 'layout/footer.php';?>
 	</div>
 	<!--fluid container-->
   <script type="text/javascript" src="js/ajax.js"></script>
