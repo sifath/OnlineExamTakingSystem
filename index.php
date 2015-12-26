@@ -3,11 +3,7 @@
   session_start();
   require 'php/DBConnection.php';
   
-  if(($_SERVER["REQUEST_METHOD"]=="POST")&& isset($_POST["updateInfo"]))
-  {
-	  header("location:updateProfile.php");
-	  exit;
-  }
+
   
 ?>
 <html lang="en">
@@ -44,7 +40,7 @@
       </div>
 
       <div>
-        
+        Join in an Exam
       </div>
     </div>
       <br><br><br>

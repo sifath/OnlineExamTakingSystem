@@ -58,7 +58,7 @@
         <div>
           <ul class="row">
             <li><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Exam Dashboard</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-education"></span> Create an Exam</a></li>
+            <li><a href="exam/createExam.php"><span class="glyphicon glyphicon-education"></span> Create an Exam</a></li>
             <li><a href="#"><span class="glyphicon glyphicon-certificate"></span> Participate in an Exam</a></li>
           </ul>
         </div>
