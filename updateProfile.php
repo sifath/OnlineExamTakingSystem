@@ -90,7 +90,7 @@
                 {
 										
               ?>
-                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			
                 <?php
                   }

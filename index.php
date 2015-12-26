@@ -2,6 +2,13 @@
 <?php
   session_start();
   require 'php/DBConnection.php';
+  
+  if(($_SERVER["REQUEST_METHOD"]=="POST")&& isset($_POST["updateInfo"]))
+  {
+	  header("location:updateProfile.php");
+	  exit;
+  }
+  
 ?>
 <html lang="en">
 <head>
@@ -45,7 +52,9 @@
                 {
               ?>
                 <li><a href="php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				
                 <?php
+				
                   }
                   else
                   {
@@ -62,7 +71,50 @@
   		</div>
   		<!--header-->
       <div class="headColor"></div>
-
+	<?php
+	if(isset($_SESSION["currentUser"]))
+	{
+		$userInfo= $userName= $name= $institution="";
+		
+		$userInfo= selectUserInfo($_SESSION["currentUser"]);
+		$userName= $userInfo["email"];
+		$name= $userInfo["name"];
+		$institution= $userInfo["institution"];
+	?>
+<form method="post">
+	<div class="container">
+	<h3>Profile Information</h3>
+	<br><br>
+	<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-5" style="background-color:lavender; font-size:16px;"> <b>user name = </b><?php echo $userName; ?></div>
+	<div class="col-sm-4"></div>
+	</div>
+	<br>
+	<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-5" style="background-color:lavender; font-size:16px;"><b> Name = </b><?php echo $name; ?></div>
+	<div class="col-sm-4"></div>
+	</div>
+	<br>
+	<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-5" style="background-color:lavender;font-size:16px;"> <b>Institution = </b><?php echo $institution; ?></div>
+	<div class="col-sm-4"></div>
+	</div>
+    <br>
+	<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-3"><input type= "submit" name="updateInfo" value="Edit" style="width:100px;"/></div>
+	<div class="col-sm-6"></div>
+	</div>
+	
+	<?php
+	
+	}
+	
+	?>
+</form>	  
       <br><br><br>
       <footer>
         <br>

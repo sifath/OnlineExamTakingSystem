@@ -17,7 +17,7 @@
 	  {
 		  if($_POST["newPassword"]==$_POST["confirmPassword"])
 		  {
-			  updateUser($email, $name, $institution, $password);
+			  updateUser($email, $name, $institution, $_POST["newPassword"]);
 		  }
 		  else
 		  {
@@ -77,7 +77,7 @@
                 {
 										
               ?>
-                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			
                 <?php
                   }
