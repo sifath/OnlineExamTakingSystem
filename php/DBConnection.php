@@ -40,7 +40,7 @@
 			$user = array();
 			while($row = $result->fetch_assoc()) 
 			{
-				$user []= array(
+				$user = array(
 					"email" => $row["email"],
 					"password" => $row["password"],
 					"name" => $row["name"],
@@ -89,8 +89,9 @@
 
 function updateUser($email, $name, $institution, $password, $photo)
 {
+	//$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
 	$sql = "UPDATE oets.userInfo SET name='$name', institution='$institution', password='$password', photo='$photo' WHERE email= '$email'";
-	$result=$GLOBALS['conn']->query($sql);
+	$result = $GLOBALS['conn']->query($sql);
 	if($result===TRUE)
 	{
 		return true;

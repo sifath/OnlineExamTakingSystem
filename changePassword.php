@@ -10,6 +10,7 @@
   $name=$_SESSION["name"];
   $institution=$_SESSION["institution"];
   $password=$_SESSION["password"];
+  $photo="";
   
   if(($_SERVER["REQUEST_METHOD"]=="POST") && (isset($_POST["update"])))
   {
@@ -17,7 +18,7 @@
 	  {
 		  if($_POST["newPassword"]==$_POST["confirmPassword"])
 		  {
-			  updateUser($email, $name, $institution, $_POST["newPassword"]);
+			  updateUser($email, $name, $institution, $_POST["newPassword"], $photo);
 		  }
 		  else
 		  {
@@ -49,13 +50,9 @@
 	<div class="container-fluid">
   	<div class="contentArea">
 		<?php include 'layout/header.php';?>
- <br>
-<div class="bodyContent">	  
-
-  	<div class="contentArea">
-  		
-            <br>
-
+ 
+ <br><br>
+<div class="bodyContent">
 <div class="container">
   <h2>Change Password</h2>
   <br><br>
@@ -89,7 +86,7 @@
 		<div class="form-group">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-4">
-		<input type="button" class="btn btn-default" value="Update" name="update" style="width:150px;"/>
+		<input type="submit" class="btn btn-default" value="Update" name="update" style="width:150px;"/>
 		</div>
 		<div class="col-sm-5"></div>
 	</div>
@@ -97,7 +94,8 @@
   </form>
 </div>
 </div>
-</div>
+
+
 	  
 	  <br><br>
 	  
