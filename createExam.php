@@ -77,7 +77,7 @@
                      </div>
                     </td>
                     <td>
-                      <select>
+                      <select name="amPm">
                         <option>AM</option>
                         <option>PM</option>  
                       </select>
@@ -93,13 +93,13 @@
                    <tr>
                      <td>
                         <div class = "input-group">
-                           <input id="hour" type="number" class="form-control" name="hour" value="" placeholder="hour">
+                           <input id="durationHour" type="number" class="form-control" name="durationHour" value="" placeholder="hour">
                            <span class = "input-group-addon">H</span>
                         </div>
                      </td>
                      <td>
                         <div class = "input-group">
-                           <input id="minute" type="number" class="form-control" name="minute" value="" placeholder="minute">
+                           <input id="durationMinute" type="number" class="form-control" name="durationMinute" value="" placeholder="minute">
                            <span class = "input-group-addon">M</span>
                         </div>
                      </td>

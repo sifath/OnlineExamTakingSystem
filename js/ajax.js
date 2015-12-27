@@ -208,10 +208,99 @@ function signup()
 
 
 
-
-
-
 function saveTheExam()
 {
+	var examName = document.getElementById('examName').value;
+	var year = document.getElementById('year').value;
+	var month = document.getElementById('month').value;
+	var day = document.getElementById('day').value;
+	var hour = document.getElementById('hour').value;
+	var minute = document.getElementById('minute').value;
+	var amPm = document.getElementById('amPm').value;
+	var durationHour = document.getElementById('durationHour').value;
+	var durationMinute = document.getElementById('durationMinute').value;
 	
+	if(!examName)
+	{
+		document.getElementById('saveExamError').innerHTML = "Red colored Field is Required !";
+		return null;
+	}
+	
+	if((!year)||(year < 2001)||(year >2020))
+	{
+		document.getElementById('saveExamError').innerHTML = "Please enter a valid year !";
+		return null;
+	}
+	
+	if((!month)||(month < 1)||(month >12))
+	{
+		document.getElementById('saveExamError').innerHTML = "Please enter a valid month !";
+		return null;
+	}
+	
+	if((!day)||(day < 1)||(day >31))
+	{
+		document.getElementById('saveExamError').innerHTML = "Please enter a valid day !";
+		return null;
+	}
+	
+	if((!hour)||(hour < 1)||(hour >12))
+	{
+		document.getElementById('saveExamError').innerHTML = "Please enter an valid hour !";
+		return null;
+	}
+	
+	if((!minute)||(minute < 1)||(minute >59))
+	{
+		document.getElementById('saveExamError').innerHTML = "Please enter a valid minute !";
+		return null;
+	}
+	
+	if((!durationHour)||(durationHour < 1)||(durationHour >5))
+	{
+		document.getElementById('saveExamError').innerHTML = "Your exam hour duration is not valid !";
+		return null;
+	}
+	
+	if((!durationMinute)||(durationMinute < 1)||(durationHour >59))
+	{
+		document.getElementById('saveExamError').innerHTML = "Your exam minute duration is not valid !";
+		return null;
+	}
+		
+	var url = "php/ajaxRequestHandle.php";
+	var data = 'saveTheExam=true'+'&examName='+examName+'&year='+year+'&month='+month+'&day='+day+'&hour='+hour+'&minute='+minute+'&amPm='+amPm+'&durationHour='+durationHour+'&durationMinute='+durationMinute;
+	
+
+
+	if(xmlHttp)
+	{
+		try
+		{
+			xmlHttp.open("POST",url,true);
+			xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlHttp.onreadystatechange = function() 
+			{
+  				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+  				{
+    				var response = xmlHttp.responseText;
+    				
+    				if(response.trim() == "successful")
+					{	
+						window.location.replace(".");
+					}
+					else
+					{
+						document.getElementById('signUpError').innerHTML = response.trim();
+					}
+   			 	}
+  			};
+
+			xmlHttp.send(data);
+
+		}catch(e)
+		{
+			alert(e.toString());
+		}
+	}
 }
