@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <?php
   session_start();
   require 'php/DBConnection.php';
@@ -9,10 +10,10 @@
   {
 	$email= $_SESSION["currentUser"];
 	$userInfo = selectUserInfo($email);
-									
-	$_SESSION["name"]=$userInfo[0]["name"];
-	$_SESSION["institution"]=$userInfo[0]["institution"];
-	$_SESSION["password"]=$userInfo[0]["password"];
+	
+	$_SESSION["name"]=$userInfo["name"];
+	$_SESSION["institution"]=$userInfo["institution"];
+	$_SESSION["password"]=$userInfo["password"];
 	
   }
 	
@@ -40,9 +41,10 @@
   
   if(($_SERVER["REQUEST_METHOD"]=="POST") && isset($_POST["update"]))
   {
-		$name=$_POST["name"];
+	  	$name=$_POST["name"];
 		$institution= $_POST["institution"];
 		updateUser($email, $name, $institution, $password, $photo);
+		
   }
   
  ?>
@@ -70,7 +72,7 @@
   <h2>Edit Profile</h2>
   <br><br>
   
-  <form class="form-horizontal" role="form" method="post">
+  <form class="form-horizontal"  method="post">
 	<div class="form-group">
       <label class="control-label col-sm-2" for="name">Name:</label>
       <div class="col-sm-4">
@@ -82,7 +84,7 @@
 		<?php
 		$image="";
 		
-		$image = $userInfo[0]["photo"];
+		$image = $userInfo["photo"];
 		if(empty($image))
 		{
 			
@@ -120,7 +122,7 @@
 	<div class="form-group">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-4">
-		<input type="button" class="btn btn-default" value="Update" name="update" style="width:150px;"/>
+		<input type="submit" class="btn btn-default" value="Update" name="update" style="width:150px;"/>
 		</div>
 		<div class="col-sm-5"></div>
 	</div>

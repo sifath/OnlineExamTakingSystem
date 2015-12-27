@@ -43,20 +43,20 @@
     
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="img/1.jpg" alt="Chania" width="350" height="250">
+        <img src="img/1.jpg" width="350" height="250">
       </div>
 
       <div class="item">
-        <img src="img/2.jpg" alt="Chania" width="350" height="250">
+        <img src="img/2.jpg" width="350" height="250">
       </div>
     
       <div class="item">
-        <img src="img/3.jpg" alt="Flower" width="350" height="250">
+        <img src="img/3.jpg" width="350" height="250">
       </div>
 
 
       <div class="item">
-        <img src="img/4.jpg" alt="Flower" width="350" height="250">
+        <img src="img/4.jpg" width="350" height="250">
       </div>
     </div>
 
