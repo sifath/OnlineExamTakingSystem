@@ -12,7 +12,7 @@
 
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="."><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li><a href="."><span class="glyphicon glyphicon-home"></span> Home</a></li>
 
                 <li><a href="#">About</a></li>
                 <li><a href="#">FAQ</a></li>
@@ -57,9 +57,9 @@
         <h3>My Dashbord</h3>
         <div>
           <ul clas="row">
-            <li><span class="glyphicon glyphicon-dashboard"></span><a href="#"> Exam Dashboard</a></li>
             <li><span class="glyphicon glyphicon-education"></span><a href="createExam.php"> Create an Exam</a></li>
             <li><span class="glyphicon glyphicon-certificate"></span><a href="#"> Participate in an Exam</a></li>
+            <li><span class="glyphicon glyphicon-dashboard"></span><a href="#"> Exam Dashboard</a></li>
           </ul>
         </div>
         <br>

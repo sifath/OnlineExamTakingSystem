@@ -210,6 +210,7 @@ function signup()
 
 function saveTheExam()
 {
+	
 	var examName = document.getElementById('examName').value;
 	var year = document.getElementById('year').value;
 	var month = document.getElementById('month').value;
@@ -220,12 +221,35 @@ function saveTheExam()
 	var durationHour = document.getElementById('durationHour').value;
 	var durationMinute = document.getElementById('durationMinute').value;
 	
+	var errorMessage = "";
+
 	if(!examName)
 	{
-		document.getElementById('saveExamError').innerHTML = "Red colored Field is Required !";
-		return null;
+		document.getElementById('examName').style.borderColor  = "red";
+		errorMessage = "Exam Tile is Required !<br>";
 	}
 	
+	if(year || month || hour || minute)
+	{
+		
+		if(new Date().getFullYear() < year)
+		{
+			document.getElementById('year').style.borderColor  = "red";
+			errorMessage = "You can not set an exam time in a past time!<br>";
+		}
+
+		if(month<1 || month>12)
+		{
+			document.getElementById('month').style.borderColor  = "red";
+			errorMessage = "Month is not valid!<br>";
+		}
+
+
+		
+	}
+
+
+
 	if((!year)||(year < 2001)||(year >2020))
 	{
 		document.getElementById('saveExamError').innerHTML = "Please enter a valid year !";
@@ -267,7 +291,11 @@ function saveTheExam()
 		document.getElementById('saveExamError').innerHTML = "Your exam minute duration is not valid !";
 		return null;
 	}
-		
+	
+
+	//document.getElementById('saveExamError').innerHTML =
+
+
 	var url = "php/ajaxRequestHandle.php";
 	var data = 'saveTheExam=true'+'&examName='+examName+'&year='+year+'&month='+month+'&day='+day+'&hour='+hour+'&minute='+minute+'&amPm='+amPm+'&durationHour='+durationHour+'&durationMinute='+durationMinute;
 	
@@ -304,3 +332,6 @@ function saveTheExam()
 		}
 	}
 }
+
+
+//-----------------End of saveTheExam()------------------------------
