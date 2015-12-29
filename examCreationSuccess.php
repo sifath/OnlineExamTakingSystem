@@ -51,7 +51,7 @@
   				<td><?php echo $e["examId"];?></td>
   				<td><?php echo $e["startTime"];?></td>
   				<td><?php echo $e["duration"];?></td>
-  				<td><a href="createQuestion.php">Set Question</a></td>
+  				<td><a href="createQuestion.php?examId=".<?php echo $e["examId"]?>>Set Question</a></td>
   				<td><a href="#">Edit Exam Setting</a></td>
   				</tr>
 
