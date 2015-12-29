@@ -144,4 +144,81 @@ function selectAllExamOfExaminee($email)
 			return null;
 		}
 }
+
+
+function insertQuestion($type,$question,$domain,$topics,$setter)
+{
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+		$sql = "INSERT INTO oets.questionbank(questionType,question,questionDomain, topics,setter)
+						VALUES ('$type', '$question','$domain', '$topics','$setter')" ;
+		if ($conn->query($sql) === TRUE) 
+		{
+			//echo "New record created successfully" ;
+		}else 
+		{
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+}
+
+
+function insertQuestionOptions($questionId,$option,$isCorrect)
+{
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+
+		$sql = "INSERT INTO oets.questionoptions(questionId,mcqOption,isCorrectAnswer)
+						VALUES ('$questionId', '$option','$isCorrect')" ;
+		if ($conn->query($sql) === TRUE) 
+		{
+			//echo "New record created successfully" ;
+		}else 
+		{
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+}
+
+
+function selectQuestionID($type,$question,$domain,$topics,$setter)
+{
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+		$sql = "SELECT * FROM oets.questionbank where questionType='$type' 
+				AND question='$question' AND questionDomain='$domain' AND 
+				topics='$topics' AND setter='$setter'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			$questionId = "";
+			while($row = $result->fetch_assoc()) 
+			{
+				$questionId = $row["questionId"];
+			}
+
+			$conn->close();
+			return $questionId;
+		} 
+		else 
+		{
+			$conn->close();
+			return null;
+		}
+}
+
+
+function insertQuestionSet($examId,$questionId,$marks)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+
+		$sql = "INSERT INTO oets.questionset(examId,questionId,marks)
+						VALUES ('$examId', '$questionId','$marks')" ;
+		if ($conn->query($sql) === TRUE) 
+		{
+			//echo "New record created successfully" ;
+		}else 
+		{
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+}
+
+
 ?>

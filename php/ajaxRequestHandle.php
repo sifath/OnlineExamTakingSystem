@@ -3,6 +3,7 @@
 	session_start();
 	require 'DBConnection.php';
 
+
 	
 	if(isset($_POST["login"]))
 	{
@@ -84,6 +85,38 @@
 	// -------------------end save the exam ------------------------------------
 
 
+
+	if(isset($_POST["addQuestion"]))
+	{
+		$topics = "";
+
+
+		insertQuestion("MCQ",$_POST["question"],$_POST["domain"],$_POST["topics"],$_SESSION["currentUser"]);
+		$options = explode("#",$_POST["options"]);
+		$correctOptions = explode("#",$_POST["correctOptions"]);
+
+		$questionId = selectQuestionID("MCQ",$_POST["question"],$_POST["domain"],$_POST["topics"],$_SESSION["currentUser"]);
+		
+		for($index = 0; $index<count($options); $index++)
+		{
+			if (in_array(strval($index), $correctOptions))
+			{
+				insertQuestionOptions($questionId,$options[$index],1);
+			}
+			else
+			{
+				insertQuestionOptions($questionId,$options[$index],0);
+			}
+		}
+
+		insertQuestionSet($_POST["examId"],$questionId,$_POST["marks"]);
+
+		$_SESSION["questionDomain"] = $_POST["domain"];
+		$_SESSION["questionTopics"] = $_POST["topics"];
+
+		echo "successful";
+
+	}
 
 
 ?>

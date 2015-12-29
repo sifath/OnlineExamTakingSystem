@@ -295,12 +295,118 @@ function saveTheExam()
 
 function addQuestion()
 {
+
+	var defaultMarks=document.getElementById("defaultMarks");
+	var domain=document.getElementById("domain");
+	var topics=document.getElementById("topics");
+	var question=document.getElementById("question");
+	var mess = document.getElementById("mess");
+	var options = document.getElementsByClassName("option");
+	var correctOption = document.getElementsByClassName("optionCheck");
+	var examId = document.getElementById("examId");
+	//var =document.getElementById("");
+
 	
+
+
+	var error="";
+
+	if(!domain.value)
+	{
+		error += "Please give the Domain Name <br>";
+	}
+
+
+	if(!question.value)
+	{
+		error += "You have to fill up the question field<br>";
+	}
+
+
+	var flag = 0;
+	var op = "";
+	
+	for(var index = 0; index<options.length; index++)
+	{
+		if(options[index].value)
+		{
+			flag++;
+			//alert(flag);
+			if(!op)
+			{
+				op += options[index].value;
+			}
+			else
+			{
+				op += "#"+options[index].value;
+			}
+		}
+	}
+
+	if(flag < 2)
+	{
+		error += "MCQ Should have at least two option<br>";
+	}
+
+	
+
+
+
+//----check if any option is checked
+
+	var checked="";
+	for(var index = 0; index<correctOption.length; index++)
+	{
+		if(correctOption[index].checked)
+		{
+			if(!checked)
+			{
+				checked += index;
+			}
+			else
+			{
+				checked += "#"+index;
+			}
+		}
+	}
+
+
+
+	if(!checked)
+	{
+		error += "Please select the answers<br>";
+	}
+
+
+
+	if(error)
+	{
+		mess.innerHTML = error;
+		return null;
+	}
+	else
+	{
+		mess.innerHTML = "";
+	}
+
+
 	var data = "";
-	var url = "";
+	var url = "php/ajaxRequestHandle.php";
+	if(topics.value)
+	{
+		data = data + "addQuestion=true&examId="+
+				examId.innerHTML+"&marks="+defaultMarks.value+"&domain="+domain.value+"&topics="+
+				topics.value+"&question="+question.value+"&options="+op+"&correctOptions="+checked;
+	}
+	else
+	{
+		data = data + "addQuestion=true&examId="+
+				examId.innerHTML+"&marks="+defaultMarks.value+"&question="+question.value
+				+"&options="+op+"&correctOptions="+checked;
+	}
+	
 
-
-
+	
 
 	if(xmlHttp)
 	{
@@ -314,7 +420,11 @@ function addQuestion()
   				{
     				
     				var response = xmlHttp.responseText;
-    				
+    				if(response.trim() == "successful")
+    				{
+    					document.getElementById("questionGroup").reset();
+    					document.getElementById("mess").innerHTML = "Successfully added<br>Now you can add another question";   					
+    				}	
    			 	}
   			};
 

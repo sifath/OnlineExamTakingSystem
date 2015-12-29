@@ -7,6 +7,23 @@
   {
     header("Location: .");
   }
+
+
+  if(!isset($_SESSION["questionDomain"]))
+  {
+  	$_SESSION["questionDomain"] = "";
+  }
+
+  if(!isset($_SESSION["questionTopics"]))
+  {
+  	$_SESSION["questionTopics"] = "";
+  }
+
+  $examId = "";
+  if(isset($_GET["examId"]))
+  {
+  	$examId = $_GET["examId"];
+  }
   
 ?>
 <html>
@@ -26,9 +43,13 @@
 		<div class="contentArea">
 		<?php include 'layout/header.php';?>
 			<div id="createQuestion">
-				
+			<h3>
+				Set Question for Exam:&nbsp; 
+				<label id="examId"><?php echo $examId;?></label>
+			</h3>
+				<hr>
 					<form id="defaultValue">
-						<h3>Default Values:</h3>
+						<h4>Default Values:</h4>
 						<div class="input-group">
 							<label for="defaultMarks">Marks for each question: </label>
 							<input id="defaultMarks" type="number" value="1" name="defaultMarks" class="form-control">
@@ -36,12 +57,12 @@
 							<br>
 						<div class="input-group">
 							<label for="domain">Question Domain: </label>
-							<input id="domain"  name="text" type="text" class="form-control">
+							<input id="domain"  name="text" type="text" class="form-control" value='<?php echo $_SESSION["questionDomain"];?>'>
 						</div>
 							<br>
 						<div class="input-group">
 							<label for="topics">Question Topics: </label>
-							<input id="topics"  name="text" type="text" class="form-control">
+							<input id="topics"  name="text" type="text" class="form-control" value='<?php echo $_SESSION["questionTopics"];?>'>
 						</div>
 							<br>						
 					</form>					
@@ -51,8 +72,8 @@
 					<hr>
 				
 					<form id="questionGroup">
-						<label for="question">Question</label>
-						<textarea id="question" class="form-control"  placeholder="Write your question here"></textarea>
+						<label for="question">Question: </label>
+						<textarea id="question" class="form-control" onkeyup="resetMessege()"  placeholder="Write your question here"></textarea>
 
 						<br><br>
 						<label>Answer options:</label>
@@ -71,11 +92,11 @@
 						</table> 
 						<br>
 
-						<p style="text-align:center"><input type="button"  class="btn btn-default" onclick="addQuestion()" value="Submit the Question"></p>
+						<p style="text-align:center"><input type="button"  class="btn btn-default" onclick="addQuestion()" value="Add the Question"></p>
 					
-						<br><br>
-						<p id = "successM" style="text-align:center; visibility:hidden; color:red" >Question Created Successfully</p>
-						<br><br>
+						<br>
+						<p id = "mess" class="error" style="text-align:center" ></p>
+						<br><br><br>
 					</form>		
 
 			</div>

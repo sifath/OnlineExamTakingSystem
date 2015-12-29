@@ -102,7 +102,6 @@ function yearChanged()
 		}
 
 	}
-
 }
 
 // ------------End of YearChange()-------------------
@@ -315,7 +314,6 @@ function minuteChange()
 function addNewOption()
 {
 	
-
 	var options = document.getElementsByClassName("option");
 
 	var flag = 0;
@@ -342,7 +340,7 @@ function addNewOption()
 
 
 	var textArea = document.createElement("textarea");
-	textArea.className = "option form-control";
+	textArea.setAttribute("class","option form-control");
 	textArea.addEventListener("keyup", addNewOption);
 	var td2 = document.createElement("td");
 	td2.appendChild(textArea);
@@ -357,3 +355,10 @@ function addNewOption()
 
 
 
+
+
+
+function resetMessege()
+{
+	document.getElementById("mess").innerHTML ="";
+}
