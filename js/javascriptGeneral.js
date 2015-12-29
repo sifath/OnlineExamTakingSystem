@@ -3,6 +3,8 @@
 var year = document.getElementById("year");
 var month = document.getElementById("month");
 var day = document.getElementById("day");
+var durationHoure = document.getElementById("durationHour");
+var durationMinute = document.getElementById("durationMinute");
 var currentYear = parseInt(new Date().getFullYear());
 var currentMonth = parseInt(new Date().getMonth())+1;
 var currentDate = parseInt(new Date().getDate());
@@ -14,8 +16,30 @@ var currentHour = parseInt(new Date().getHours());
 var currentMinute = parseInt(new Date().getMinutes());
 
 
+
+
+function enableSave()
+{
+	if(document.getElementById("examName").value)
+	{
+		document.getElementById("saveExam").disabled = false;
+		document.getElementById("mes").style.visibility = "hidden";
+	}
+	else
+	{
+		document.getElementById("saveExam").disabled = true;
+		document.getElementById("mes").style.visibility = "visible";
+		document.getElementById("mes").innerHTML = "Fill up the Exam Title to enable this button";
+	}
+	
+}
 function yearChanged()
 {
+
+	document.getElementById("saveExam").disabled = true;
+	document.getElementById("mes").innerHTML = "Fill up the complete start time to enable the save button";
+	document.getElementById("mes").style.visibility = "visible";
+
 
 
 	for(var x=month.length-1; x>0; x--)
@@ -38,6 +62,17 @@ function yearChanged()
 		minute.remove(x);
 	}
 
+	if(year.options[year.selectedIndex].text == "Year")
+	{
+		document.getElementById("saveExam").disabled = false;
+		document.getElementById("mes").style.visibility = "hidden";
+
+		month.disabled = true;
+		day.disabled = true;
+		hour.disabled = true;
+		minute.disabled = true;
+		return;
+	}
 
 	year.disabled = false;
 	month.disabled = false;
@@ -89,6 +124,20 @@ function monthChanged()
 		minute.remove(x);
 	}	
 
+
+
+	if(month.options[month.selectedIndex].text == "Month")
+	{
+		document.getElementById("saveExam").disabled = true;
+		document.getElementById("mes").style.visibility = "visible";
+		document.getElementById("mes").innerHTML = "Fill up the complete start time to enable the save button";
+		day.disabled = true;
+		hour.disabled = true;
+		minute.disabled = true;
+		return;
+	}
+
+
 	year.disabled = false;
 	month.disabled = false;
 	day.disabled = false;
@@ -139,6 +188,17 @@ function dayChanged()
 		minute.remove(x);
 	}	
 
+	if(day.options[day.selectedIndex].text == "Day")
+	{
+		document.getElementById("saveExam").disabled = true;
+		document.getElementById("mes").style.visibility = "visible";
+		document.getElementById("mes").innerHTML = "Fill up the complete start time to enable the save button";
+		hour.disabled = true;
+		minute.disabled = true;
+		return;
+	}
+
+
 	year.disabled = false;
 	month.disabled = false;
 	day.disabled = false;
@@ -178,6 +238,20 @@ function hourChanged()
 		minute.remove(x);
 	}	
 
+
+
+
+	if(hour.options[hour.selectedIndex].text == "Hour")
+	{
+		document.getElementById("saveExam").disabled = true;
+		document.getElementById("mes").style.visibility = "visible";
+		document.getElementById("mes").innerHTML = "Fill up the complete start time to enable the save button";
+		
+		minute.disabled = true;
+		return;
+	}
+
+
 	year.disabled = false;
 	month.disabled = false;
 	day.disabled = false;
@@ -185,7 +259,8 @@ function hourChanged()
 	minute.disabled = false;
 
 
-	if(hour.value == currentHour)
+
+	if(year.value == currentYear && month.value == currentMonth && day.value == currentDate && hour.value == currentHour)
 		{
 			
 			for(var m = currentMinute; m<= 59; m++)
@@ -205,5 +280,30 @@ function hourChanged()
 				minute.add(option);
 			}
 		}
+}
+
+
+function minuteChange()
+{
+	
+	if(minute.options[minute.selectedIndex].text == "Minute")
+	{
+		document.getElementById("saveExam").disabled = true;
+		document.getElementById("mes").style.visibility = "visible";
+		document.getElementById("mes").innerHTML = "Fill up the complete start time to enable the save button";
+		return;
+	}
+
+	if(document.getElementById("examName").value)
+	{
+		document.getElementById("saveExam").disabled = false;
+		document.getElementById("mes").style.visibility = "hidden";
+	}
+	else
+	{
+		document.getElementById("saveExam").disabled = true;
+		document.getElementById("mes").innerHTML= "Fill up the Exam Title to enable this button";
+	}
+	
 }
 // ------------End of hourChange()-------------------

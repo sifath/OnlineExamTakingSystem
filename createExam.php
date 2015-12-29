@@ -36,7 +36,7 @@
               <div class="form-group">
                 <label for="examName">Exam Title :&nbsp;&nbsp;&nbsp;<span style="color:red"><b>*</b></span></label>
        
-                <textarea id="examName" name="examName" class="resizeable form-control" placeholder="Write the Exam Heading Here" required></textarea>                      
+                <textarea id="examName"  onkeyup="enableSave()" name="examName" class="resizeable form-control" placeholder="Write the Exam Heading Here" required></textarea>                      
               </div>
               <br><br>
               <div class="form-group">
@@ -93,7 +93,7 @@
                            ?>
                         </select>
                         <span class="input-group-addon "><b>:</b></span>
-                        <select id="minute" class="form-control input-group-addon  fcChange" disabled>
+                        <select id="minute" class="form-control input-group-addon  fcChange"  onchange="minuteChange()" disabled>
                            <option>Minute</option>
                         </select>
                         <!--
@@ -113,13 +113,20 @@
               <div class="form-group">
                <label for="duration">Exam Duration : </label>
                 <table id= "duration">
+                  <tr>HH:MM</tr>
                    <tr>
                      <td>
                         <div class = "input-group">
                            <input id="durationHour" type="number" class="form-control fcChange" name="durationHour" value="" placeholder="hour">
-                           <span class = "input-group-addon"><b>:</b></span>
-                           <select id="durationMinute" class="form-control input-group-addon fcChange">
-                              <option>Minute</option>
+                           <span class = "input-group-addon"><b>and</b></span>
+                           <select id="durationMinute" class="form-control input-group-addon fcChange" >
+                              <option>0</option>
+                              <?php
+                                 for($i = 1; $i< 60; $i++)
+                                 {
+                                    echo "<option>".$i."</option>";
+                                 }
+                              ?>
                            </select>
                         </div>
                      </td>
@@ -128,9 +135,10 @@
    
               </div>
               <br>
-            <input type="button" name="saveExam" onclick="saveTheExam()" class="btn btn-primary" value="Save the Exam">
+            <input type="button" id="saveExam" name="saveExam" onclick="saveTheExam()" class="btn btn-primary" value="Save the Exam" disabled>
+            &nbsp;&nbsp;&nbsp;
+            <span id="mes" class="error" style = "visibility:visible">Fill up the Exam Title to enable this button</span>
             <br>
-            <span id="saveExamError" class="error"></span>
       </form>
     </div>
       <br><br><br>

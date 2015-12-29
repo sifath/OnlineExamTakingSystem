@@ -211,95 +211,50 @@ function signup()
 function saveTheExam()
 {
 	
-	var examName = document.getElementById('examName').value;
-	var year = document.getElementById('year').value;
-	var month = document.getElementById('month').value;
-	var day = document.getElementById('day').value;
-	var hour = document.getElementById('hour').value;
-	var minute = document.getElementById('minute').value;
-	var amPm = document.getElementById('amPm').value;
-	var durationHour = document.getElementById('durationHour').value;
-	var durationMinute = document.getElementById('durationMinute').value;
+	var examName = document.getElementById('examName');
+	var year = document.getElementById('year');
+	var month = document.getElementById('month');
+	var day = document.getElementById('day');
+	var hour = document.getElementById('hour');
+	var minute = document.getElementById('minute');
+	var durationHour = document.getElementById('durationHour');
+	var durationMinute = document.getElementById('durationMinute');
 	
 	var errorMessage = "";
+	var data = 'saveTheExam=true'+'&examName='+examName.value;
 
-	if(!examName)
-	{
-		document.getElementById('examName').style.borderColor  = "red";
-		errorMessage = "Exam Tile is Required !<br>";
-	}
 	
-	if(year || month || hour || minute)
+	if(year.options[year.selectedIndex].text != "Year")
 	{
-		
-		if(new Date().getFullYear() < year)
+		data = data + '&year='+year.options[year.selectedIndex].text+'&month='
+				+month.options[month.selectedIndex].text+'&day='+day.options[day.selectedIndex].text+'&hour='+hour.options[hour.selectedIndex].text+'&minute='
+				+minute.options[minute.selectedIndex].text;
+	}
+
+
+	if(durationHour.value)
+	{
+		if(parseInt(durationHour.value) != "NaN" && parseInt(durationHour.value) >=0)
 		{
-			document.getElementById('year').style.borderColor  = "red";
-			errorMessage = "You can not set an exam time in a past time!<br>";
+			data = data + '&durationHour='+durationHour.value+'&durationMinute='+durationMinute.options[durationMinute.selectedIndex].text;
 		}
-
-		if(month<1 || month>12)
+		else
 		{
-			document.getElementById('month').style.borderColor  = "red";
-			errorMessage = "Month is not valid!<br>";
+			document.getElementById("mes").innerHTML = "Duration is not a valid time";
+			document.getElementById("mes").style.visibility = "visible";
+			return null;
 		}
-
-
-		
 	}
-
-
-
-	if((!year)||(year < 2001)||(year >2020))
+	else
+	if(durationMinute.options[durationMinute.selectedIndex].text != '0')
 	{
-		document.getElementById('saveExamError').innerHTML = "Please enter a valid year !";
-		return null;
+		data = data + '&durationHour=0'+'&durationMinute='+durationMinute.options[durationMinute.selectedIndex].text;
 	}
-	
-	if((!month)||(month < 1)||(month >12))
-	{
-		document.getElementById('saveExamError').innerHTML = "Please enter a valid month !";
-		return null;
-	}
-	
-	if((!day)||(day < 1)||(day >31))
-	{
-		document.getElementById('saveExamError').innerHTML = "Please enter a valid day !";
-		return null;
-	}
-	
-	if((!hour)||(hour < 1)||(hour >12))
-	{
-		document.getElementById('saveExamError').innerHTML = "Please enter an valid hour !";
-		return null;
-	}
-	
-	if((!minute)||(minute < 1)||(minute >59))
-	{
-		document.getElementById('saveExamError').innerHTML = "Please enter a valid minute !";
-		return null;
-	}
-	
-	if((!durationHour)||(durationHour < 1)||(durationHour >5))
-	{
-		document.getElementById('saveExamError').innerHTML = "Your exam hour duration is not valid !";
-		return null;
-	}
-	
-	if((!durationMinute)||(durationMinute < 1)||(durationHour >59))
-	{
-		document.getElementById('saveExamError').innerHTML = "Your exam minute duration is not valid !";
-		return null;
-	}
-	
-
-	//document.getElementById('saveExamError').innerHTML =
-
 
 	var url = "php/ajaxRequestHandle.php";
-	var data = 'saveTheExam=true'+'&examName='+examName+'&year='+year+'&month='+month+'&day='+day+'&hour='+hour+'&minute='+minute+'&amPm='+amPm+'&durationHour='+durationHour+'&durationMinute='+durationMinute;
+			
+	//alert(data);
 	
-
 
 	if(xmlHttp)
 	{
@@ -312,14 +267,14 @@ function saveTheExam()
   				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
   				{
     				var response = xmlHttp.responseText;
-    				
+    				alert("response: "+response);
     				if(response.trim() == "successful")
 					{	
-						window.location.replace(".");
+						window.location.replace("examCreationSuccess.php");
 					}
 					else
 					{
-						document.getElementById('signUpError').innerHTML = response.trim();
+						//document.getElementById('signUpError').innerHTML = response.trim();
 					}
    			 	}
   			};

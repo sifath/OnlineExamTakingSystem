@@ -53,7 +53,34 @@
 				echo "successful";
 			}
 	}
-		
 	
+
+
+
+	if(isset($_POST["saveTheExam"]))
+	{
+		$examName = $_POST["examName"];
+		
+		$startDateTime = $duration = "";
+		if(isset($_POST["year"]))
+		{
+			$d = $_POST["year"]."-".$_POST["month"]."-".$_POST["day"]." ".$_POST["hour"].":".$_POST["minute"];
+			$startDateTime = date("Y-m-d H:i:s", strtotime($d));
+			//echo $startDateTime;
+		}
+
+
+		if(isset($_POST["durationHour"]))
+		{
+			$duration = date("H:i:s",strtotime($_POST["durationHour"].":".$_POST["durationMinute"]));
+		}
+		
+		insertExam($_SESSION["currentUser"],$examName,$startDateTime,$duration);
+		echo "successful";
+
+	}
+
+
+	// -------------------end save the exam ------------------------------------
 ?>
 

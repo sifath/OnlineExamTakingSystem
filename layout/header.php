@@ -96,7 +96,7 @@
               <br>
               <div id="loginError" class="error"></div>
               <br>
-              <button name="loginbtn" type="button" onclick="login()" class="btn btn-primary">Login</button>
+              <button name="loginbtn" type = "button" onclick="login()" class="btn btn-primary">Login</button>
             </form>
           </div>
           <div class="modal-footer">

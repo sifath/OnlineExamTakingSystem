@@ -89,13 +89,59 @@
 
 function updateUser($email, $name, $institution, $password, $photo)
 {
-	//$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
 	$sql = "UPDATE oets.userInfo SET name='$name', institution='$institution', password='$password', photo='$photo' WHERE email= '$email'";
-	$result = $GLOBALS['conn']->query($sql);
+	$result = $conn->query($sql);
 	if($result===TRUE)
 	{
 		return true;
 	}
 }
 
+
+function insertExam($email,$examName,$startDate,$duration)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+		$sql = "INSERT INTO oets.exams(examName,examinerId,startTime, duration)
+						VALUES ('$examName','$email','$startDate','$duration')" ;
+		if ($conn->query($sql) === TRUE) 
+		{
+			//echo "successfull";
+		}else 
+		{
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+}
+
+
+
+function selectAllExamOfExaminee($email)
+{
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+		$sql = "SELECT * FROM oets.exams where examinerId='".$email."'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			$exams = array();
+			while($row = $result->fetch_assoc()) 
+			{
+				$exams[] = array(
+					"examId" => $row["examId"],
+					"examName" => $row["examName"],
+					"examinerId" => $row["examinerId"],
+					"startTime" => $row["startTime"],
+					"duration" => $row["duration"]
+					);
+			}
+			$conn->close();
+			return $exams;
+		} 
+		else 
+		{
+			$conn->close();
+			return null;
+		}
+}
 ?>
