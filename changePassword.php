@@ -3,6 +3,16 @@
 <?php
   session_start();
   require 'php/DBConnection.php';
+  require 'php/phpGeneral.php';
+  if(!isset($_SESSION["currentUser"]))
+  {
+    header("Location: .");
+  }
+  
+?>
+
+<?php
+
   
   $name=$institution=$email="";
   

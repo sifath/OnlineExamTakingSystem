@@ -204,3 +204,29 @@ footer div{
     width:100%;
     margin:auto;
 }
+
+
+#questionGroup
+{
+    //width:100%;
+}
+
+#createQuestion{
+    width: 80%;
+    margin:auto;
+}
+
+#createQuestion table
+{
+    width: 80%;
+}
+
+#createQuestion table td,tr{
+    padding: 10px;
+}
+
+
+#createQuestion table td:nth-child(2)
+{
+    //width: 
+}

@@ -307,3 +307,53 @@ function minuteChange()
 	
 }
 // ------------End of hourChange()-------------------
+
+//------------------------------------------------------------------------------------------------
+
+
+
+function addNewOption()
+{
+	
+
+	var options = document.getElementsByClassName("option");
+
+	var flag = 0;
+
+	for(var index = 0; index<options.length; index++)
+	{
+		if(!options[index].value)
+		{
+			flag = 1;
+			break;
+		}
+	}
+
+	if(flag)
+	{
+		return null;
+	}
+
+	var check = document.createElement("input");
+	check.setAttribute("type", "checkbox");
+	check.setAttribute("class","optionCheck");
+	var td1 = document.createElement("td");
+	td1.appendChild(check);
+
+
+	var textArea = document.createElement("textarea");
+	textArea.className = "option form-control";
+	textArea.addEventListener("keyup", addNewOption);
+	var td2 = document.createElement("td");
+	td2.appendChild(textArea);
+
+	var tr = document.createElement("tr");
+	tr.appendChild(td1);
+	tr.appendChild(td2);
+
+	var table = document.getElementById("questionTable");
+	table.appendChild(tr);
+}
+
+
+

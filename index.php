@@ -2,10 +2,8 @@
 <?php
   session_start();
   require 'php/DBConnection.php';
-  
-
-  
 ?>
+
 <html lang="en">
 <head>
 	<title>Home</title>

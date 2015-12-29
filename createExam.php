@@ -117,7 +117,7 @@
                    <tr>
                      <td>
                         <div class = "input-group">
-                           <input id="durationHour" type="number" class="form-control fcChange" name="durationHour" value="" placeholder="hour">
+                           <input id="durationHour" type="number" class="form-control fcChange" name="durationHour" placeholder="hour">
                            <span class = "input-group-addon"><b>and</b></span>
                            <select id="durationMinute" class="form-control input-group-addon fcChange" >
                               <option>0</option>
@@ -150,7 +150,7 @@
 	<!--fluid container-->
 
 
-<script type="text/javascript" src="js/javascriptGeneral.js"></script>  
+   <script type="text/javascript" src="js/javascriptGeneral.js"></script>  
   <script type="text/javascript" src="js/ajax.js"></script>
   <script type="text/javascript" src="js/jqueryHelper.js"></script>
 

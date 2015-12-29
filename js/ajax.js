@@ -290,3 +290,40 @@ function saveTheExam()
 
 
 //-----------------End of saveTheExam()------------------------------
+
+
+
+function addQuestion()
+{
+	
+	var data = "";
+	var url = "";
+
+
+
+
+	if(xmlHttp)
+	{
+		try
+		{
+			xmlHttp.open("POST",url,true);
+			xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlHttp.onreadystatechange = function() 
+			{
+  				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+  				{
+    				
+    				var response = xmlHttp.responseText;
+    				
+   			 	}
+  			};
+
+			xmlHttp.send(data);
+
+		}catch(e)
+		{
+			alert(e.toString());
+		}
+	}
+
+}
