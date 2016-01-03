@@ -113,9 +113,38 @@ function insertExam($email,$examName,$startDate,$duration)
 		}
 }
 
+function selectExamInfo($examId)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+		$sql = "SELECT * FROM oets.exams where examId='$examId'";
+		$result = $conn->query($sql);
 
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			$exam = array();
+			while($row = $result->fetch_assoc()) 
+			{
+				$exam = array(
+					"examId" => $row["examId"],
+					"examName" => $row["examName"],
+					"examinerId" => $row["examinerId"],
+					"startTime" => $row["startTime"],
+					"duration" => $row["duration"]
+					);
+			}
+			$conn->close();
+			return $exam;
+		} 
+		else 
+		{
+			$conn->close();
+			return null;
+		}
 
-function selectAllExamOfExaminee($email)
+}
+
+function selectAllExamOfExaminer($email)
 {
 	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
 		$sql = "SELECT * FROM oets.exams where examinerId='".$email."'";
@@ -220,5 +249,22 @@ function insertQuestionSet($examId,$questionId,$marks)
 		}
 }
 
+
+
+
+function insertExaminee($examId,$examineeId,$institutionId)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+
+		$sql = "INSERT INTO oets.examineelist(examId,examineeId,institutionId)
+						VALUES ('$examId', '$examineeId','$institutionId')" ;
+		if ($conn->query($sql) === TRUE) 
+		{
+			//echo "New record created successfully" ;
+		}else 
+		{
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}	
+}
 
 ?>

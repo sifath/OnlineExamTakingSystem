@@ -24,7 +24,7 @@
 <body>
     <div class="container-fluid">
   		<div class="contentArea">
-        <div clss="allExamList">
+        <div class="allExamList">
       <?php include 'layout/header.php';?>
 
   			<h2>Your Exam is created Successfully</h2>
@@ -41,7 +41,7 @@
             <th>Option 2</th>
           </tr>
   			<?php 
-  			$exams = selectAllExamOfExaminee($_SESSION["currentUser"]);
+  			$exams = selectAllExamOfExaminer($_SESSION["currentUser"]);
 
   			foreach (array_reverse($exams) as $e) {
   			

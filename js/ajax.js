@@ -437,3 +437,45 @@ function addQuestion()
 	}
 
 }
+
+
+
+function startExam()
+{
+	var examId = document.getElementById("examId");
+	var institutionId = document.getElementById("institutionId");
+
+
+	var data = "startExam=true&examId="+examId.value+"&institutionId="+institutionId.value;
+	var url = "php/ajaxRequestHandle.php";
+
+	if(xmlHttp)
+	{
+		try
+		{
+			xmlHttp.open("POST",url,true);
+			xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlHttp.onreadystatechange = function() 
+			{
+  				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+  				{
+    				
+    				var response = xmlHttp.responseText;
+    				if(response.trim() == "successful")
+    				{
+    					window.location.replace("exam.php?examId="+examId.value);
+    				}
+    				else{
+    					document.getElementById("joinExamError").innerHTML = response.trim()+"<br>";
+    				}	
+   			 	}
+  			};
+
+			xmlHttp.send(data);
+
+		}catch(e)
+		{
+			alert(e.toString());
+		}
+	}
+}

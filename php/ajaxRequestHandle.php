@@ -119,5 +119,28 @@
 	}
 
 
+
+	if(isset($_POST["startExam"]))
+	{
+		$examInfo = selectExamInfo($_POST["examId"]);
+
+		if($examInfo == null)
+		{
+			echo "This exam Id is Not valid <br>";
+			return null;
+		}
+
+		if(date("Y-m-d H:i:s",strtotime($examInfo["startTime"])) > date("Y-m-d H:i:s"))
+		{
+			echo "Your Exam Will Start at '".$examInfo["startTime"]."' <br>";
+			return null;
+		}
+
+		insertExaminee($_POST["examId"],$_SESSION["currentUser"],$_POST["institutionId"]);
+
+		echo "successful";
+	}
+
+
 ?>
 

@@ -193,9 +193,7 @@ footer div{
 
 .allExamList
 {
-    //width:80%;
-    margin-left: 50px;
-    margin-right: 50px;
+    width:80%;
     margin:auto;
 }
 
@@ -229,4 +227,15 @@ footer div{
 #createQuestion table td:nth-child(2)
 {
     //width: 
+}
+
+#joinExam{
+    width:80%;
+    margin:auto;
+}
+
+#examPage
+{
+    width:80%;
+    margin:auto;    
 }

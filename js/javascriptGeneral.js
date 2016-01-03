@@ -362,3 +362,30 @@ function resetMessege()
 {
 	document.getElementById("mess").innerHTML ="";
 }
+
+
+function startExamValidation()
+{
+	
+	var error= "";
+	if(!document.getElementById("examId").value)
+	{
+		error = "Please Enter an Exam Id<br>";
+	}
+
+	if(!document.getElementById("institutionId").value)
+	{
+		error = "Please Enter Your Institution Id. In case you don't have one just use your name here<br>";
+	}
+
+	if(error)
+	{
+		document.getElementById("joinExamError").innerHTML = error;
+		document.getElementById("startExamBtn").disabled = true;
+	}
+	else
+	{
+		document.getElementById("startExamBtn").disabled = false;
+		document.getElementById("joinExamError").innerHTML ="";
+	}
+}
