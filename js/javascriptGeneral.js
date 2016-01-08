@@ -320,7 +320,7 @@ function addNewOption()
 
 	for(var index = 0; index<options.length; index++)
 	{
-		if(!options[index].value)
+		if(!options[index].value.trim())
 		{
 			flag = 1;
 			break;
@@ -335,22 +335,21 @@ function addNewOption()
 	var check = document.createElement("input");
 	check.setAttribute("type", "checkbox");
 	check.setAttribute("class","optionCheck");
-	var td1 = document.createElement("td");
-	td1.appendChild(check);
+	var div = document.createElement("div");
+	div.appendChild(check);
 
 
 	var textArea = document.createElement("textarea");
 	textArea.setAttribute("class","option form-control");
 	textArea.addEventListener("keyup", addNewOption);
-	var td2 = document.createElement("td");
-	td2.appendChild(textArea);
+	div.appendChild(textArea);
 
-	var tr = document.createElement("tr");
-	tr.appendChild(td1);
-	tr.appendChild(td2);
+	var fieldset = document.getElementById("allOptions");
+	var br = document.createElement("br");
+	fieldset.appendChild(br);	
+	fieldset.appendChild(div);
 
-	var table = document.getElementById("questionTable");
-	table.appendChild(tr);
+
 }
 
 
