@@ -209,6 +209,11 @@ footer div{
 }
 
 
+
+#allOptions
+{
+    width:100%;
+}
 #questionGroup
 {
     //width:100%;
@@ -219,20 +224,26 @@ footer div{
     margin:auto;
 }
 
-#createQuestion table
+
+
+.optionGroup
 {
-    width: 80%;
+    width:100%;
+
 }
 
-#createQuestion table td,tr{
-    padding: 10px;
+.optionCheck{
+    display: inline-block;
+    vertical-align: top;
+    width: 10%;
 }
 
-
-#createQuestion table td:nth-child(2)
-{
-    //width: 
+.option{
+    display: inline-block;
+    vertical-align: top;
+    width: 85%;
 }
+
 
 #joinExam{
     width:80%;

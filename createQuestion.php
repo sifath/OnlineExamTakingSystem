@@ -47,57 +47,59 @@
 				Set Question for Exam:&nbsp; 
 				<label id="examId"><?php echo $examId;?></label>
 			</h3>
-				<hr>
-					<form id="defaultValue">
-						<h4>Default Values:</h4>
-						<div class="input-group">
-							<label for="defaultMarks">Marks for each question: </label>
+			<hr>
+				<form id="defaultValue" class="form-horizontal">
+					<h4>Default Values:</h4>
+					<div class="control-group">
+						<label for="defaultMarks" class="control-label">Marks for each question: </label>
+						<div class="controls">
 							<input id="defaultMarks" type="number" value="1" name="defaultMarks" class="form-control">
 						</div>
-							<br>
-						<div class="input-group">
-							<label for="domain">Question Domain: </label>
+					</div>
+					<br>
+					<div class="control-group">
+						<label for="domain" class="control-label">Question Domain: </label>
+						<div class="controls">
 							<input id="domain"  name="text" type="text" class="form-control" value='<?php echo $_SESSION["questionDomain"];?>'>
 						</div>
-							<br>
-						<div class="input-group">
-							<label for="topics">Question Topics: </label>
+					</div>
+					<br>
+					<div class="control-group">
+						<label for="topics" class="control-label">Question Topics: </label>
+						<div class="controls">
 							<input id="topics"  name="text" type="text" class="form-control" value='<?php echo $_SESSION["questionTopics"];?>'>
 						</div>
-							<br>						
-					</form>					
+					</div>						
+				</form>					
 				
+				<br><hr><br>
+				
+				<form id="questionGroup">
+					<label for="question">Question: </label>
+					<textarea id="question" class="form-control" onkeyup="resetMessege()"  placeholder="Write your question here"></textarea>
+
+					<br><br>
+					<fieldset id="allOptions">
+						<legend>Answer options</legend>
+						<div class="optionGroup">
+							<input type="checkbox" class="optionCheck"  >
+							<textarea  class="option form-control" onkeyup="addNewOption()"></textarea>									
+						</div>
+						<br>	
+						<div class="optionGroup">
+							<input type="checkbox" class="optionCheck"  >
+							<textarea  class="option form-control" onkeyup="addNewOption()"></textarea>									
+						</div>
+					</fieldset>
+							<!--End quoestionOptions-->
 					<br>
 
-					<hr>
-				
-					<form id="questionGroup">
-						<label for="question">Question: </label>
-						<textarea id="question" class="form-control" onkeyup="resetMessege()"  placeholder="Write your question here"></textarea>
-
-						<br><br>
-						<label>Answer options:</label>
-						<table id="questionTable">
-							<tr class="optionGroup">
-								<td><input type="checkbox" class="optionCheck"  ></td>
-
-								<td><textarea  class="option form-control" onkeyup="addNewOption()"></textarea></td>
-							</tr>
-							
-							<tr class="optionGroup">
-								<td><input type="checkbox" class="optionCheck" ></td>
-
-								<td><textarea   class="option form-control" onkeyup="addNewOption()"></textarea></td>
-							</tr>
-						</table> 
-						<br>
-
-						<p style="text-align:center"><input type="button"  class="btn btn-default" onclick="addQuestion()" value="Add the Question"></p>
+					<p style="text-align:center"><input type="button"  class="btn btn-default" onclick="addQuestion()" value="Add the Question"></p>
 					
-						<br>
-						<p id = "mess" class="error" style="text-align:center" ></p>
-						<br><br><br>
-					</form>		
+					<br>
+					<p id = "mess" class="error" style="text-align:center" ></p>
+					<br><br><br>
+				</form>		
 
 			</div>
 			<!--createQuestion-->
