@@ -48,27 +48,21 @@
 				<label id="examId"><?php echo $examId;?></label>
 			</h3>
 			<hr>
-				<form id="defaultValue" class="form-horizontal">
+				<form id="defaultValue">
 					<h4>Default Values:</h4>
-					<div class="control-group">
-						<label for="defaultMarks" class="control-label">Marks for each question: </label>
-						<div class="controls">
-							<input id="defaultMarks" type="number" value="1" name="defaultMarks" class="form-control">
-						</div>
+					<div>
+						<label for="defaultMarks">Marks for each question: </label>
+						<input id="defaultMarks" type="number" value="1" name="defaultMarks" class="form-control">
 					</div>
 					<br>
-					<div class="control-group">
-						<label for="domain" class="control-label">Question Domain: </label>
-						<div class="controls">
-							<input id="domain"  name="text" type="text" class="form-control" value='<?php echo $_SESSION["questionDomain"];?>'>
-						</div>
+					<div>
+						<label for="domain">Question Domain: </label>
+						<input id="domain"  name="text" type="text" class="form-control" value='<?php echo $_SESSION["questionDomain"];?>'>
 					</div>
 					<br>
-					<div class="control-group">
-						<label for="topics" class="control-label">Question Topics: </label>
-						<div class="controls">
-							<input id="topics"  name="text" type="text" class="form-control" value='<?php echo $_SESSION["questionTopics"];?>'>
-						</div>
+					<div>
+						<label for="topics">Question Topics: </label>
+						<input id="topics"  name="text" type="text" class="form-control" value='<?php echo $_SESSION["questionTopics"];?>'>
 					</div>						
 				</form>					
 				
