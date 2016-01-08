@@ -5,6 +5,11 @@ body{
 	background-color: #f2f2f2;
 }
 
+div,p,li,a,h1,h2,h3,h4,h5,h6{
+    word-wrap:break-word;
+}
+
+
 .contentArea{
 
     width: 80%;
@@ -234,8 +239,31 @@ footer div{
     margin:auto;
 }
 
+
+/*----------Exam Page----------------*/
 #examPage
 {
     width:80%;
     margin:auto;    
+}
+
+#examClock, #examTitle
+{
+    width:100%;
+    margin:auto;       
+}
+
+#examTitle{
+    text-align: center;
+    background-color: #e7e7e7;
+}
+.question
+{
+    width:100%;
+    margin:auto;
+}
+
+.mcqOptions
+{
+    padding-left: 40px;
 }

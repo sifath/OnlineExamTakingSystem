@@ -32,54 +32,7 @@ function creteXMLHttpRequestObject(){
 		return xmlHttp;
 }
 
-//-------------AJax FunctionDemo---------------------------
-//********************************************************
 
-
-/*
-
-
-function AJAXDEMO()
-{
-	
-	var data = "";
-	var url = "";
-
-	//write your logic here
-
-
-	if(xmlHttp)
-	{
-		try
-		{
-			xmlHttp.open("POST",url,true);
-			xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlHttp.onreadystatechange = function() 
-			{
-  				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
-  				{
-    				
-    				var response = xmlHttp.responseText;
-    				//or var response = xmlHttp.responseXML;
-
-    				//write your logic here which will work after getting response from server 
-    				
-   			 	}
-  			};
-
-			xmlHttp.send(data);
-
-		}catch(e)
-		{
-			alert(e.toString());
-		}
-	}
-
-}
-
-
-
-*/
 
 function login()
 {
@@ -101,7 +54,7 @@ function login()
     				
     				var response = xmlHttp.responseText;
     				
-    				if(response.trim() == "successful")
+    				if(response.indexOf("successful") != -1)
 					{	
 						window.location.replace(".");
 					}
@@ -185,7 +138,7 @@ function signup()
   				{
     				var response = xmlHttp.responseText;
     				
-    				if(response.trim() == "successful")
+    				if(response.indexOf("successful") != -1)
 					{	
 						window.location.replace(".");
 					}
@@ -267,14 +220,14 @@ function saveTheExam()
   				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
   				{
     				var response = xmlHttp.responseText;
-    				alert("response: "+response);
-    				if(response.trim() == "successful")
+    				//alert("response: "+response);
+    				if(response.indexOf("successful") != -1)
 					{	
 						window.location.replace("examCreationSuccess.php");
 					}
 					else
 					{
-						//document.getElementById('signUpError').innerHTML = response.trim();
+						document.getElementById('mes').innerHTML = response.trim();
 					}
    			 	}
   			};
@@ -328,7 +281,7 @@ function addQuestion()
 	
 	for(var index = 0; index<options.length; index++)
 	{
-		if(options[index].value)
+		if(options[index].value.trim() != '')
 		{
 			flag++;
 			//alert(flag);
@@ -420,7 +373,7 @@ function addQuestion()
   				{
     				
     				var response = xmlHttp.responseText;
-    				if(response.trim() == "successful")
+    				if(response.indexOf("successful") != -1)
     				{
     					document.getElementById("questionGroup").reset();
     					document.getElementById("mess").innerHTML = "Successfully added<br>Now you can add another question";   					
@@ -461,7 +414,7 @@ function startExam()
   				{
     				
     				var response = xmlHttp.responseText;
-    				if(response.trim() == "successful")
+    				if(response.indexOf("successful") != -1)
     				{
     					window.location.replace("exam.php?examId="+examId.value);
     				}

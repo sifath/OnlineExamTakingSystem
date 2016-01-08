@@ -7,8 +7,10 @@
   {
     header("Location: .");
   }
+
 ?>
-<html>
+
+<html lang="en">
 <head>
 	<title>Exam Page</title>
 	<meta charset="utf-8">
@@ -21,12 +23,15 @@
 </head>
 
 <body>
-	
 
 	<div class="container-fluid">
 		<div class="contentArea">
-			<div class="examPage">
-				<h2>Exam: <?php echo $_GET["examId"];?></h2>
+			<div id="examClock">
+				
+			</div>
+			<br>
+			<div id="examPage">
+				<?php include 'php/examControl.php'; ?>
 			</div>
 		</div>
 		<!--contentArea end-->
@@ -34,7 +39,7 @@
 	<!--Conatiner fluid End-->
 
 	<script type="text/javascript" src="js/javascriptGeneral.js"></script>  
-  <script type="text/javascript" src="js/ajax.js"></script>
-  <script type="text/javascript" src="js/jqueryHelper.js"></script>
+  	<script type="text/javascript" src="js/ajax.js"></script>
+  	<script type="text/javascript" src="js/jqueryHelper.js"></script>
 </body>
 </html>

@@ -2,10 +2,15 @@
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
-	
+	$dbName = "oets";
+
+	//$servername = "mysql9.000webhost.com";
+	//$username = "a3649752_sifath";
+	//$password = "1234sifath";
+	//$dbName = "a3649752_oets";
 
 	// Create connection
-	$conn = new mysqli($servername, $username, $password);
+	$conn = new mysqli($servername, $username, $password, $dbName);
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	} 
@@ -14,8 +19,8 @@
 
 	function insertUserInfo($email,$password,$name,$institutionName,$photo)
 	{
-		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-		$sql = "INSERT INTO oets.userinfo(email,password,name,institution, photo)
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "INSERT INTO userinfo(email,password,name,institution, photo)
 						VALUES ('".$email."', '".$password."','".$name."', '".$institutionName."','".$photo."')" ;
 		if ($conn->query($sql) === TRUE) 
 		{
@@ -30,8 +35,8 @@
 
 	function selectUserInfo($email)
 	{
-		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-		$sql = "SELECT * FROM oets.userinfo where email='".$email."'";
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM userinfo where email='".$email."'";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) 
@@ -62,8 +67,8 @@
 
 	function selectPassword($email)
 	{
-		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-		$sql = "SELECT password FROM oets.userinfo where email='".$email."'";
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT password FROM userinfo where email='".$email."'";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) 
@@ -89,8 +94,8 @@
 
 function updateUser($email, $name, $institution, $password, $photo)
 {
-	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-	$sql = "UPDATE oets.userInfo SET name='$name', institution='$institution', password='$password', photo='$photo' WHERE email= '$email'";
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+	$sql = "UPDATE userInfo SET name='$name', institution='$institution', password='$password', photo='$photo' WHERE email= '$email'";
 	$result = $conn->query($sql);
 	if($result===TRUE)
 	{
@@ -101,8 +106,8 @@ function updateUser($email, $name, $institution, $password, $photo)
 
 function insertExam($email,$examName,$startDate,$duration)
 {
-		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-		$sql = "INSERT INTO oets.exams(examName,examinerId,startTime, duration)
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "INSERT INTO exams(examName,examinerId,startTime, duration)
 						VALUES ('$examName','$email','$startDate','$duration')" ;
 		if ($conn->query($sql) === TRUE) 
 		{
@@ -115,8 +120,8 @@ function insertExam($email,$examName,$startDate,$duration)
 
 function selectExamInfo($examId)
 {
-		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-		$sql = "SELECT * FROM oets.exams where examId='$examId'";
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM exams where examId='$examId'";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) 
@@ -146,8 +151,8 @@ function selectExamInfo($examId)
 
 function selectAllExamOfExaminer($email)
 {
-	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-		$sql = "SELECT * FROM oets.exams where examinerId='".$email."'";
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM exams where examinerId='".$email."'";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) 
@@ -177,8 +182,8 @@ function selectAllExamOfExaminer($email)
 
 function insertQuestion($type,$question,$domain,$topics,$setter)
 {
-	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-		$sql = "INSERT INTO oets.questionbank(questionType,question,questionDomain, topics,setter)
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "INSERT INTO questionbank(questionType,question,questionDomain, topics,setter)
 						VALUES ('$type', '$question','$domain', '$topics','$setter')" ;
 		if ($conn->query($sql) === TRUE) 
 		{
@@ -192,9 +197,9 @@ function insertQuestion($type,$question,$domain,$topics,$setter)
 
 function insertQuestionOptions($questionId,$option,$isCorrect)
 {
-	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
 
-		$sql = "INSERT INTO oets.questionoptions(questionId,mcqOption,isCorrectAnswer)
+		$sql = "INSERT INTO questionoptions(questionId,mcqOption,isCorrectAnswer)
 						VALUES ('$questionId', '$option','$isCorrect')" ;
 		if ($conn->query($sql) === TRUE) 
 		{
@@ -206,10 +211,74 @@ function insertQuestionOptions($questionId,$option,$isCorrect)
 }
 
 
+
+function selectQuestionDetail($questionId)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM questionbank where questionId='$questionId'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			$question = array();
+			while($row = $result->fetch_assoc()) 
+			{
+				$question = array(
+					"questionId" => $row["questionId"],
+					"questionType" => $row["questionType"],
+					"question" => $row["question"],
+					"questionDomain" => $row["questionDomain"],
+					"topics" => $row["topics"],
+					"setter" => $row["setter"]
+					);
+			}
+			$conn->close();
+			return $question;
+		} 
+		else 
+		{
+			$conn->close();
+			return null;
+		}
+
+}
+
+
+function selectAllOptionsOf($questionId)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM questionoptions where questionId='$questionId'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			$questionSet = array();
+			while($row = $result->fetch_assoc()) 
+			{
+				$questionSet[] = array(
+					"questionId" => $row["questionId"],
+					"mcqOption" => $row["mcqOption"],
+					"isCorrectAnswer" => $row["isCorrectAnswer"]
+					);
+			}
+			$conn->close();
+			return $questionSet;
+		} 
+		else 
+		{
+			$conn->close();
+			return null;
+		}
+
+}
+
+
 function selectQuestionID($type,$question,$domain,$topics,$setter)
 {
-	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
-		$sql = "SELECT * FROM oets.questionbank where questionType='$type' 
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM questionbank where questionType='$type' 
 				AND question='$question' AND questionDomain='$domain' AND 
 				topics='$topics' AND setter='$setter'";
 		$result = $conn->query($sql);
@@ -236,9 +305,9 @@ function selectQuestionID($type,$question,$domain,$topics,$setter)
 
 function insertQuestionSet($examId,$questionId,$marks)
 {
-		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
 
-		$sql = "INSERT INTO oets.questionset(examId,questionId,marks)
+		$sql = "INSERT INTO questionset(examId,questionId,marks)
 						VALUES ('$examId', '$questionId','$marks')" ;
 		if ($conn->query($sql) === TRUE) 
 		{
@@ -254,9 +323,9 @@ function insertQuestionSet($examId,$questionId,$marks)
 
 function insertExaminee($examId,$examineeId,$institutionId)
 {
-		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"]);
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
 
-		$sql = "INSERT INTO oets.examineelist(examId,examineeId,institutionId)
+		$sql = "INSERT INTO examineelist(examId,examineeId,institutionId)
 						VALUES ('$examId', '$examineeId','$institutionId')" ;
 		if ($conn->query($sql) === TRUE) 
 		{
@@ -265,6 +334,36 @@ function insertExaminee($examId,$examineeId,$institutionId)
 		{
 			echo "Error: " . $sql . "<br>" . $conn->error;
 		}	
+}
+
+
+
+function selectAllQuestionOf($examId)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM questionset where examId='$examId'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			$questionSet = array();
+			while($row = $result->fetch_assoc()) 
+			{
+				$questionSet[] = array(
+					"questionId" => $row["questionId"],
+					"marks" => $row["marks"]
+					);
+			}
+			$conn->close();
+			return $questionSet;
+		} 
+		else 
+		{
+			$conn->close();
+			return null;
+		}
+
 }
 
 ?>

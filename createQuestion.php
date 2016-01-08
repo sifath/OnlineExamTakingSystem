@@ -78,13 +78,13 @@
 						<br><br>
 						<label>Answer options:</label>
 						<table id="questionTable">
-							<tr>
+							<tr class="optionGroup">
 								<td><input type="checkbox" class="optionCheck"  ></td>
 
 								<td><textarea  class="option form-control" onkeyup="addNewOption()"></textarea></td>
 							</tr>
 							
-							<tr>
+							<tr class="optionGroup">
 								<td><input type="checkbox" class="optionCheck" ></td>
 
 								<td><textarea   class="option form-control" onkeyup="addNewOption()"></textarea></td>

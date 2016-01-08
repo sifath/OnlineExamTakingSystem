@@ -126,20 +126,14 @@
 				recruitment & pre-employment assessments; educational facilities, schools, 
 				universities, distance learning, online courses, E-Learning, self-study groups, 
 				practice tests & more.
-				<br><br>
-				Optionally charge for your exams, so you can sell quizzes online and receive payments 
-				instantly. Custom web-based testing services allow you to easily create & give secure 
-				online exams to your exact requirements with features such as time limits, public & 
-				private test access, randomize questions, instant feedback, multiple choice, short 
-				answer, essay & more question types.</p>
+		</p>
 			</div>
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<h3> Business & Education Plans</h3>
 				<br>
 				<p style="text-align:justify">We understand every organization is different. That's why we've created 
-				affordable online testing plans to suit your needs. <br><br>
-				From occasional usage to bulk testing requirements, we have you covered.</p>
+				affordable online testing plans to suit your needs.</p>
 			</div>
 			<div class="col-sm-2"></div>
 	</div>
