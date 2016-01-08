@@ -24,8 +24,8 @@
 <body>
     <div class="container-fluid">
   		<div class="contentArea">
-        <div class="allExamList">
       <?php include 'layout/header.php';?>
+        <div class="allExamList">
 
   			<h2>Your Exam is created Successfully</h2>
   			<h3>You can set question for this exam! For all the options please see the list below</h3>
@@ -59,14 +59,14 @@
   					}
   				?>
   			</table>
-
+        <br><br><br>
         </div>
         <!--End allExamList-->
+         <?php include 'layout/footer.php';?>
   		</div>
   		<!--End contentArea-->
     </div>
     <!--End container-fluid-->
-       <?php include 'layout/footer.php';?>
 
 
 	<script type="text/javascript" src="js/javascriptGeneral.js"></script>  
