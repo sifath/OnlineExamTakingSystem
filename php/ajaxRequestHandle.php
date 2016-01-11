@@ -82,7 +82,7 @@
 	}
 
 
-	// -------------------end save the exam ------------------------------------
+	// --------------------- end save the exam -----------------------------
 
 
 
@@ -99,7 +99,7 @@
 		
 		for($index = 0; $index<count($options); $index++)
 		{
-			if (in_array(strval($index), $correctOptions))
+			if (in_array($options[$index], $correctOptions))
 			{
 				insertQuestionOptions($questionId,$options[$index],1);
 			}

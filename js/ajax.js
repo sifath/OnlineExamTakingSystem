@@ -257,79 +257,73 @@ function addQuestion()
 	var options = document.getElementsByClassName("option");
 	var correctOption = document.getElementsByClassName("optionCheck");
 	var examId = document.getElementById("examId");
-	//var =document.getElementById("");
+	var optionGroup = document.getElementsByClassName("optionGroup");
 
 	
 
 
 	var error="";
 
-	if(!domain.value)
+	if(!domain.value.trim())
 	{
 		error += "Please give the Domain Name <br>";
 	}
 
 
-	if(!question.value)
+	if(!question.value.trim())
 	{
 		error += "You have to fill up the question field<br>";
 	}
 
 
+
+	var op ="";
+	var checked="";
 	var flag = 0;
-	var op = "";
-	
-	for(var index = 0; index<options.length; index++)
+	for(var index = 0; index<optionGroup.length; index++)
 	{
-		if(options[index].value.trim() != '')
+		var textarea = optionGroup[index].getElementsByTagName("textarea")[0];
+
+		if(textarea.value.trim())
 		{
-			flag++;
-			//alert(flag);
 			if(!op)
 			{
-				op += options[index].value;
+				op += textarea.value;
 			}
 			else
 			{
-				op += "#"+options[index].value;
+				op += "#"+textarea.value;
+			}
+
+			flag++;
+
+			var checkbox = optionGroup[index].getElementsByTagName("input")[0];
+			if(checkbox.checked)
+			{
+				if(!checked)
+				{
+					checked += textarea.value;
+				}
+				else
+				{
+					checked += "#"+textarea.value;
+				}
 			}
 		}
 	}
+
 
 	if(flag < 2)
 	{
 		error += "MCQ Should have at least two option<br>";
 	}
 
-	
-
-
-
-//----check if any option is checked
-
-	var checked="";
-	for(var index = 0; index<correctOption.length; index++)
-	{
-		if(correctOption[index].checked)
-		{
-			if(!checked)
-			{
-				checked += index;
-			}
-			else
-			{
-				checked += "#"+index;
-			}
-		}
-	}
-
-
-
 	if(!checked)
 	{
-		error += "Please select the answers<br>";
+		error += "Please select the correct answers<br>";
 	}
 
+	
 
 
 	if(error)
@@ -345,7 +339,7 @@ function addQuestion()
 
 	var data = "";
 	var url = "php/ajaxRequestHandle.php";
-	if(topics.value)
+	if(topics.value.trim())
 	{
 		data = data + "addQuestion=true&examId="+
 				examId.innerHTML+"&marks="+defaultMarks.value+"&domain="+domain.value+"&topics="+
@@ -382,8 +376,8 @@ function addQuestion()
   			};
 
 			xmlHttp.send(data);
-
-		}catch(e)
+		}
+		catch(e)
 		{
 			alert(e.toString());
 		}
@@ -391,6 +385,7 @@ function addQuestion()
 
 }
 
+// --------- EndOf addQuestion() ------------------------
 
 
 function startExam()
@@ -431,4 +426,12 @@ function startExam()
 			alert(e.toString());
 		}
 	}
+}
+
+//-------------End of startExam() ------------------------
+
+
+function submitAnswer()
+{
+	//alert(event.target.getAttribute("name")+"<br>"+event.target.getAttribute("value"));
 }

@@ -336,6 +336,7 @@ function addNewOption()
 	check.setAttribute("type", "checkbox");
 	check.setAttribute("class","optionCheck");
 	var div = document.createElement("div");
+	div.setAttribute("class","optionGroup");
 	div.appendChild(check);
 
 
