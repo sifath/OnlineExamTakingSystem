@@ -88,7 +88,7 @@
 							<!--End quoestionOptions-->
 					<br>
 
-					<p style="text-align:center"><input type="button"  class="btn btn-default" onclick="addQuestion()" value="Add the Question"></p>
+					<p style="text-align:center"><input type="button"  class="btn btn-default" onclick="addQuestion()" value="Save Question"></p>
 					
 					<br>
 					<p id = "mess" class="error" style="text-align:center" ></p>

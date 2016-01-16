@@ -141,4 +141,41 @@
 		echo "successful";
 	}
 
+
+
+
+	if(isset($_POST["submitAnswer"]))
+	{
+		$examId = $_POST["examId"];
+		$questionId = $_POST["questionId"];
+		$answer = $_POST["answer"];
+		$check = $_POST["check"];
+
+		if($check == "false")
+		{
+			$result = deleteAnswer($_SESSION["currentUser"],$examId,$questionId,$answer);
+			if($result == "successfull")
+			{
+				echo "successful";
+			}
+			else
+			{
+				echo $result;
+			}
+		}
+		else
+		if($check == "true")
+		{
+			$result = insertAnswer($_SESSION["currentUser"],$examId,$questionId,$answer);
+			if($result == "successfull")
+			{
+				echo "successful";
+			}
+			else
+			{
+				echo $result;
+			}
+		}
+	}
+
 ?>

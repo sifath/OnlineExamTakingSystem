@@ -433,5 +433,48 @@ function startExam()
 
 function submitAnswer()
 {
-	//alert(event.target.getAttribute("name")+"<br>"+event.target.getAttribute("value"));
+
+	if(event.target.getAttribute("class").trim() == "clickOptions")
+	{	
+
+		var examId = document.getElementById("examId").innerHTML.trim();
+		var questionId = event.target.getAttribute("name").trim();
+		var answer = event.target.getAttribute("value").trim();
+		var check = event.target.checked;
+		//alert(event.target.getAttribute("name")+" : "+answer+" : "+check);
+		alert(examId);
+		var data = "submitAnswer=true&examId="+examId+"&questionId="+questionId+"&answer="+answer+"&check="+check;
+		var url = "php/ajaxRequestHandle.php";
+
+		if(xmlHttp)
+		{
+			try
+			{
+				xmlHttp.open("POST",url,true);
+				xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xmlHttp.onreadystatechange = function() 
+				{
+  					if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+  					{
+    				
+    					var response = xmlHttp.responseText;
+    					alert(response);
+    					if(response.indexOf("successful") != -1)
+    					{
+    						//window.location.replace("exam.php?examId="+examId.value);
+    					}
+    					else{
+    						//document.getElementById("joinExamError").innerHTML = response.trim()+"<br>";
+    					}	
+   			 		}
+  				};
+
+				xmlHttp.send(data);
+
+			}catch(e)
+			{
+				alert(e.toString());
+			}
+		}
+	}
 }

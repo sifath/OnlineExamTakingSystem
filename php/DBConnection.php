@@ -366,4 +366,66 @@ function selectAllQuestionOf($examId)
 
 }
 
+function selectExamineesAnswer($examineeId,$examId,$questionId)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM examineesanswers where studentId='$examineeId' AND examId='$examId' AND questionId='$questionId'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			$answers = array();
+			while($row = $result->fetch_assoc()) 
+			{
+				$answers[] = array(
+					"questionId" => $row["questionId"],
+					"marks" => $row["marks"]
+					);
+			}
+			$conn->close();
+			return $answers;
+		} 
+		else 
+		{
+			$conn->close();
+			return null;
+		}
+}
+
+
+function deleteAnswer($examineeId,$examId,$questionId,$answer)
+{
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+	$sql = "DELETE FROM examineesanswers where studentId='$examineeId' AND examId='$examId' AND questionId='$questionId' AND answer='$answer'";
+
+	//$result = $conn->query($sql);
+
+	if ($conn->query($sql) === TRUE) 
+	{
+    	return "successfull";
+	} 
+	else 
+	{
+    	return $conn->error;
+	}
+}
+
+
+function insertAnswer($examineeId,$examId,$questionId,$answer)
+{
+	$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+	$sql = "INSERT INTO examineesanswers(studentId,examId,questionId,answer)
+						VALUES ('$examineeId', '$examId','$questionId', '$answer')" ;
+	if ($conn->query($sql) === TRUE) 
+	{
+		return "successfull";
+	}
+	else 
+	{
+		//echo "alert(".$conn->error.")";
+		return $conn->error;
+	}
+}
+
 ?>
