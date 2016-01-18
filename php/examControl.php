@@ -13,7 +13,7 @@
 			<h5>(Tick The Correct Answers, Your answer will save automatically)</h5>
 			</div>';
 	echo '<br>';
-
+	
 	$start = 0;
 	$end = count($questionSet);
 
@@ -25,7 +25,15 @@
 		echo '<br>';
 		$options = selectAllOptionsOf($questionSet[$index]["questionId"]);
 		foreach ($options as $op) {
-			echo '<label class="mcqOptions"><input type="checkbox" class="clickOptions" onchange="submitAnswer()" name="'.$question["questionId"].'" value="'.htmlspecialchars($op["mcqOption"],ENT_QUOTES,ini_get("default_charset")).'"> '.htmlspecialchars($op["mcqOption"],ENT_QUOTES,ini_get("default_charset")).'</label>';
+			if(isSelected($_SESSION["currentUser"],$examId,$question["questionId"],htmlspecialchars($op["mcqOption"],ENT_QUOTES,ini_get("default_charset"))))
+			{
+				echo '<label class="mcqOptions"><input type="checkbox" class="clickOptions" onchange="submitAnswer()" name="'.$question["questionId"].'" value="'.htmlspecialchars($op["mcqOption"],ENT_QUOTES,ini_get("default_charset")).'" checked> '.htmlspecialchars($op["mcqOption"],ENT_QUOTES,ini_get("default_charset")).'</label>';
+			}
+			else
+			{
+				echo '<label class="mcqOptions"><input type="checkbox" class="clickOptions" onchange="submitAnswer()" name="'.$question["questionId"].'" value="'.htmlspecialchars($op["mcqOption"],ENT_QUOTES,ini_get("default_charset")).'"> '.htmlspecialchars($op["mcqOption"],ENT_QUOTES,ini_get("default_charset")).'</label>';
+			}
+			
 			echo '<br>';
 		}
 		echo '<hr>';

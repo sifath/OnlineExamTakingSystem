@@ -1,5 +1,6 @@
 
 var xmlHttp = creteXMLHttpRequestObject();
+
 //var xmlHttpResponse = "";
 //var textHttpResponse = "";
 
@@ -442,7 +443,7 @@ function submitAnswer()
 		var answer = event.target.getAttribute("value").trim();
 		var check = event.target.checked;
 		//alert(event.target.getAttribute("name")+" : "+answer+" : "+check);
-		alert(examId);
+		//alert(examId);
 		var data = "submitAnswer=true&examId="+examId+"&questionId="+questionId+"&answer="+answer+"&check="+check;
 		var url = "php/ajaxRequestHandle.php";
 
@@ -458,7 +459,7 @@ function submitAnswer()
   					{
     				
     					var response = xmlHttp.responseText;
-    					alert(response);
+    					//alert(response);
     					if(response.indexOf("successful") != -1)
     					{
     						//window.location.replace("exam.php?examId="+examId.value);
@@ -475,6 +476,101 @@ function submitAnswer()
 			{
 				alert(e.toString());
 			}
+		}
+	}
+}
+
+
+var	timerVar;
+function myTimer(examTime) {
+    var currentTime = new Date();
+    var startTime = new Date(examTime.startTime);
+    //var startTime = Date.parse(examTime.startTime.trim());
+    var duration = examTime.duration.split(":");
+    var endTime = new Date(startTime.getFullYear(),
+    						startTime.getMonth(),
+    						startTime.getDate(),
+    						startTime.getHours()+parseInt(duration[0]),
+    						startTime.getMinutes()+parseInt(duration[1]),
+    						startTime.getSeconds()+parseInt(duration[2]),
+    						startTime.getMilliseconds()
+    						);
+
+    //document.getElementById("countdown").innerHTML = t;
+    var remainingTime = endTime - currentTime;
+
+
+    //alert(remainingTime);
+    //alert("End Time: "+endTime+"  Start Time: "+examTime.startTime);
+    if(remainingTime<=0)
+    {
+    	clearInterval(timerVar);
+    }
+
+    var remainder;
+    var hour = parseInt(remainingTime / (60*60*1000));
+    remainder = remainingTime % (60*60*1000);
+    var minute = parseInt(remainder / (60*1000));
+    remainder = remainder % (60*1000);
+    var second = parseInt(remainder / 1000);
+
+    if(hour.toString().length ==1)
+    {
+    	hour = '0'+hour;
+    }
+
+    if(minute.toString().length ==1)
+    {
+    	minute = '0'+minute;
+    }
+    
+    if(second.toString().length ==1)
+    {
+    	second = '0'+second;
+    }
+
+    document.getElementById("countdown").innerHTML = hour+":"+minute+":"+second;
+
+}
+
+
+
+function countdown()
+{
+	//var date = new Date();
+	//alert(date);
+	//document.getElementById("countdown").innerHTML = date.getMinutes() + ":"+date.getSeconds();
+	var examId = document.getElementById("examId").innerHTML.trim();
+
+	var data = "countdown=true&examId="+examId;
+	var url = "php/ajaxRequestHandle.php";
+
+	if(xmlHttp)
+	{
+		try
+		{
+			xmlHttp.open("POST",url,true);
+			xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlHttp.onreadystatechange = function() 
+			{
+  				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) 
+  				{
+    			
+    				var examTime = JSON.parse(xmlHttp.responseText);
+    				//alert(xmlHttp.responseText);
+    				if(examTime.duration.trim())
+    				{
+    					myTimer(examTime);
+    					//alert(examTime.duration);
+    					timerVar = setInterval(function(){ myTimer(examTime) }, 1000);
+    				}
+    				
+   		 		}
+  			};
+				xmlHttp.send(data);
+			}catch(e)
+		{
+			alert(e.toString());
 		}
 	}
 }

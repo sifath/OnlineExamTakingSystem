@@ -389,3 +389,4 @@ function startExamValidation()
 		document.getElementById("joinExamError").innerHTML ="";
 	}
 }
+

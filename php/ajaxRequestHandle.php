@@ -2,7 +2,7 @@
 <?php
 	session_start();
 	require 'DBConnection.php';
-
+	date_default_timezone_set('Asia/Dhaka');
 
 	
 	if(isset($_POST["login"]))
@@ -176,6 +176,38 @@
 				echo $result;
 			}
 		}
+	}
+
+
+
+
+	if(isset($_POST["countdown"]))
+	{
+		$examInfo = selectExamInfo($_POST["examId"]);
+		$start = "";
+		if(trim($examInfo["startTime"]))
+		{
+			$start = $examInfo["startTime"];
+		}
+		else
+		{
+			$start = $_SESSION["startTime"];
+		}
+
+		$year = date("Y", strtotime($start));
+		//$month = intval(trim(date("m", strtotime($start)))) - 1;
+		$month = date("m", strtotime($start));
+		$day =	date("d", strtotime($start));
+		$time = date("H:i:s", strtotime($start));
+
+		$startDateTime = $year.'-'.$month.'-'.$day.' '.$time;
+
+		$examTime = array(
+			"startTime" => $startDateTime,
+			"duration" => $examInfo["duration"]
+			);
+
+		echo json_encode($examTime);
 	}
 
 ?>

@@ -7,6 +7,8 @@
   {
     header("Location: .");
   }
+	date_default_timezone_set('Asia/Dhaka');
+  $_SESSION["startTime"] = date("Y-m-d H:i:s");
 
 ?>
 
@@ -20,15 +22,15 @@
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/mainLayout.css">
+
 </head>
 
 <body>
-
+	<div id="examClock">
+		<span class="glyphicon glyphicon-time"></span> <b><time id="countdown"></time></b>
+	</div>
 	<div class="container-fluid">
 		<div class="contentArea">
-			<div id="examClock">
-				
-			</div>
 			<br>
 			<div id="examPage">
 				<?php include 'php/examControl.php'; ?>
@@ -41,5 +43,6 @@
 	<script type="text/javascript" src="js/javascriptGeneral.js"></script>  
   	<script type="text/javascript" src="js/ajax.js"></script>
   	<script type="text/javascript" src="js/jqueryHelper.js"></script>
+  	<script>countdown();</script>
 </body>
 </html>

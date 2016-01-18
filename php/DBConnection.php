@@ -379,8 +379,10 @@ function selectExamineesAnswer($examineeId,$examId,$questionId)
 			while($row = $result->fetch_assoc()) 
 			{
 				$answers[] = array(
+					"studentId" => $row["studentId"],
+					"examId" => $row["examId"],
 					"questionId" => $row["questionId"],
-					"marks" => $row["marks"]
+					"answer" => $row["answer"]
 					);
 			}
 			$conn->close();
@@ -426,6 +428,31 @@ function insertAnswer($examineeId,$examId,$questionId,$answer)
 		//echo "alert(".$conn->error.")";
 		return $conn->error;
 	}
+}
+
+function isSelected($examineeId,$examId,$questionId,$answer)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM examineesanswers 
+				where studentId='$examineeId' AND examId='$examId'
+				AND questionId='$questionId'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			while($row = $result->fetch_assoc()) 
+			{
+				if(trim(htmlspecialchars($row["answer"],ENT_QUOTES,ini_get("default_charset"))) == trim($answer))
+				{
+					return true;
+				}
+			}
+		} 
+		else 
+		{
+			
+			return false;
+		}	
 }
 
 ?>

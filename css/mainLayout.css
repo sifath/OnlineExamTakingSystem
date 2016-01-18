@@ -258,13 +258,26 @@ footer div{
     margin:auto;    
 }
 
-#examClock, #examTitle
+#examClock
 {
     width:100%;
-    margin:auto;       
+    margin:auto;
+
+    text-align: right;
+    right:0px;
+    position: fixed;
+    font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15%;
+    color:#CCFFFF;
+    background-color: #709928;
 }
 
+
 #examTitle{
+    width:100%;
+    margin:auto;
     text-align: center;
     background-color: #e7e7e7;
 }
