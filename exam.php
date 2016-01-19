@@ -8,7 +8,6 @@
     header("Location: .");
   }
 	date_default_timezone_set('Asia/Dhaka');
-  $_SESSION["startTime"] = date("Y-m-d H:i:s");
 
 ?>
 

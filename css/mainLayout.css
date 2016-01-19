@@ -291,3 +291,31 @@ footer div{
 {
     padding-left: 40px;
 }
+
+#examEnd
+{
+    width:100%;
+    margin:auto;   
+    color: #0000FF;
+    text-align: center;
+}
+
+
+
+/*------------------------Exam Dashboard -----------------------*/
+
+#examDashboard
+{
+    width: 80%;
+    margin:auto;
+}
+
+
+/*------------------------End of Exam Dashboard ------------------*/
+
+
+#allResult
+{
+    width: 80%;
+    margin:auto;   
+}

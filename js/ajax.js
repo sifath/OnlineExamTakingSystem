@@ -480,12 +480,33 @@ function submitAnswer()
 	}
 }
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    //alert(d);
+    var expires = "expires="+d;
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
+
+
 
 var	timerVar;
-function myTimer(examTime) {
+function myTimer(examTime)
+{
     var currentTime = new Date();
     var startTime = new Date(examTime.startTime);
-    //var startTime = Date.parse(examTime.startTime.trim());
     var duration = examTime.duration.split(":");
     var endTime = new Date(startTime.getFullYear(),
     						startTime.getMonth(),
@@ -496,15 +517,14 @@ function myTimer(examTime) {
     						startTime.getMilliseconds()
     						);
 
-    //document.getElementById("countdown").innerHTML = t;
+
     var remainingTime = endTime - currentTime;
 
-
-    //alert(remainingTime);
-    //alert("End Time: "+endTime+"  Start Time: "+examTime.startTime);
     if(remainingTime<=0)
     {
     	clearInterval(timerVar);
+    	window.location.replace("examEnd.php");
+
     }
 
     var remainder;
@@ -529,7 +549,9 @@ function myTimer(examTime) {
     	second = '0'+second;
     }
 
-    document.getElementById("countdown").innerHTML = hour+":"+minute+":"+second;
+    var timer = hour+":"+minute+":"+second;
+    setCookie("remainingTime", timer.trim(), 2);
+    document.getElementById("countdown").innerHTML = timer;
 
 }
 
@@ -537,9 +559,7 @@ function myTimer(examTime) {
 
 function countdown()
 {
-	//var date = new Date();
-	//alert(date);
-	//document.getElementById("countdown").innerHTML = date.getMinutes() + ":"+date.getSeconds();
+	
 	var examId = document.getElementById("examId").innerHTML.trim();
 
 	var data = "countdown=true&examId="+examId;
@@ -560,8 +580,15 @@ function countdown()
     				//alert(xmlHttp.responseText);
     				if(examTime.duration.trim())
     				{
-    					myTimer(examTime);
-    					//alert(examTime.duration);
+    					if(getCookie("remainingTime")=="")
+    					{
+    						setCookie("remainingTime", examTime.duration.trim(), 2);
+    					}
+    					else
+    					{
+    						examTime.duration = getCookie("remainingTime").trim();
+    					}
+
     					timerVar = setInterval(function(){ myTimer(examTime) }, 1000);
     				}
     				

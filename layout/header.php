@@ -60,7 +60,7 @@
           <ul clas="row">
             <li><span class="glyphicon glyphicon-education"></span><a href="createExam.php"> Create an Exam</a></li>
             <li><span class="glyphicon glyphicon-certificate"></span><a href="joinexam.php"> Participate in an Exam</a></li>
-            <li><span class="glyphicon glyphicon-dashboard"></span><a href="#"> Exam Dashboard</a></li>
+            <li><span class="glyphicon glyphicon-dashboard"></span><a href="examDashboard.php"> Exam Dashboard</a></li>
           </ul>
         </div>
         <br>

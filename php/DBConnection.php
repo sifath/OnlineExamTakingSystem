@@ -254,17 +254,17 @@ function selectAllOptionsOf($questionId)
 		if ($result->num_rows > 0) 
 		{
 			// output data of each row
-			$questionSet = array();
+			$options = array();
 			while($row = $result->fetch_assoc()) 
 			{
-				$questionSet[] = array(
+				$options[] = array(
 					"questionId" => $row["questionId"],
 					"mcqOption" => $row["mcqOption"],
 					"isCorrectAnswer" => $row["isCorrectAnswer"]
 					);
 			}
 			$conn->close();
-			return $questionSet;
+			return $options;
 		} 
 		else 
 		{
@@ -272,6 +272,34 @@ function selectAllOptionsOf($questionId)
 			return null;
 		}
 
+}
+
+function selectAllCorrectOptionsOf($questionId)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM questionoptions where questionId='$questionId' AND isCorrectAnswer='1'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			$options = array();
+			while($row = $result->fetch_assoc()) 
+			{
+				$options[] = array(
+					"questionId" => $row["questionId"],
+					"mcqOption" => htmlspecialchars($row["mcqOption"],ENT_QUOTES,ini_get("default_charset")),
+					"isCorrectAnswer" => $row["isCorrectAnswer"]
+					);
+			}
+			$conn->close();
+			return $options;
+		} 
+		else 
+		{
+			$conn->close();
+			return null;
+		}	
 }
 
 
@@ -337,7 +365,6 @@ function insertExaminee($examId,$examineeId,$institutionId)
 }
 
 
-
 function selectAllQuestionOf($examId)
 {
 		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
@@ -351,12 +378,42 @@ function selectAllQuestionOf($examId)
 			while($row = $result->fetch_assoc()) 
 			{
 				$questionSet[] = array(
+					"examId" => $row["examId"],
 					"questionId" => $row["questionId"],
 					"marks" => $row["marks"]
 					);
 			}
 			$conn->close();
 			return $questionSet;
+		} 
+		else 
+		{
+			$conn->close();
+			return null;
+		}
+
+}
+
+function selectAllExamineeOf($examId)
+{
+		$conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+		$sql = "SELECT * FROM examineelist where examId='$examId'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) 
+		{
+			// output data of each row
+			$examinee = array();
+			while($row = $result->fetch_assoc()) 
+			{
+				$examinee[] = array(
+					"examId" => $row["examId"],
+					"examineeId" => $row["examineeId"],
+					"institutionId" => $row["institutionId"]
+					);
+			}
+			$conn->close();
+			return $examinee;
 		} 
 		else 
 		{
@@ -382,7 +439,7 @@ function selectExamineesAnswer($examineeId,$examId,$questionId)
 					"studentId" => $row["studentId"],
 					"examId" => $row["examId"],
 					"questionId" => $row["questionId"],
-					"answer" => $row["answer"]
+					"answer" => htmlspecialchars($row["answer"],ENT_QUOTES,ini_get("default_charset"))
 					);
 			}
 			$conn->close();
@@ -394,6 +451,8 @@ function selectExamineesAnswer($examineeId,$examId,$questionId)
 			return null;
 		}
 }
+
+
 
 
 function deleteAnswer($examineeId,$examId,$questionId,$answer)

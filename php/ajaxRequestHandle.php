@@ -191,7 +191,7 @@
 		}
 		else
 		{
-			$start = $_SESSION["startTime"];
+			$start = date("Y-m-d H:i:s");
 		}
 
 		$year = date("Y", strtotime($start));
