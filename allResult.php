@@ -38,11 +38,13 @@
         <?php 
         $examineeList = selectAllExamineeOf($_GET["examId"]);
 
+        if($examineeList)
+        {
         foreach ($examineeList as $examinee) {
-        
+          $examineeInfo  = selectUserInfo($examinee["examineeId"]);
         ?>
           <tr>
-          <td><?php echo selectUserInfo($examinee["examineeId"])["name"];?></td>
+          <td><?php echo $examineeInfo["name"];?></td>
           <td><?php echo $examinee["institutionId"];?></td>
           <td><?php echo getAcquiredMarks($_GET["examId"],$examinee["examineeId"]);?></td>
           <td><a href="#">Detail</a></td>
@@ -50,6 +52,7 @@
 
           <?php 
             }
+          }
           ?>
         </table>
 			</div>

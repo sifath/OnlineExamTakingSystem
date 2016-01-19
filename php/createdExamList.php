@@ -11,8 +11,10 @@
           </tr>
   			<?php 
   			$exams = selectAllExamOfExaminer($_SESSION["currentUser"]);
-
-  			foreach (array_reverse($exams) as $e) {
+        if($exams)
+        {
+  			foreach (array_reverse($exams) as $e) 
+        {
   			
   			?>
   				<tr>
@@ -27,5 +29,6 @@
 
   				<?php 
   					}
+          }
   				?>
 </table>

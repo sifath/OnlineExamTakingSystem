@@ -27,8 +27,8 @@
       <?php include 'layout/header.php';?>
         <div class="allExamList">
 
-  			<h2>Your Exam is created Successfully</h2>
-  			<h3>You can set question for this exam! For all the options please see the list below</h3>
+  			<h3>List Of all the Exam You Created</h3>
+  			<br>
 
   			<table id ="examList" class="table table-hover table-responsive">
 

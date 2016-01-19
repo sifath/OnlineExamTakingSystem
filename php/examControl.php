@@ -6,9 +6,10 @@
 
 	echo '<div id="examTitle">
 			<h3>'.$examDetail["examName"].'</h3>';
+			$examinerInfo = selectUserInfo($examDetail["examinerId"]);
 	echo '<h4>
 			<span>Exam Id : <span id="examId">'.$examId.'</span> , </span>
-			<span><u>Exam By : '.selectUserInfo($examDetail["examinerId"])["name"].'</u></span>
+			<span><u>Exam By : '.$examinerInfo["name"].'</u></span>
 			</h4>
 			<h5>(Tick The Correct Answers, Your answer will save automatically)</h5>
 			</div>';
